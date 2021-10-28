@@ -1,5 +1,5 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, ADD_ID_QTY, SET_ID } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID } from '../actions/basketAction'
 
 const initialState = {
 
@@ -36,6 +36,7 @@ const basketReducer = (state = initialState, action) => {
                 ...state,
                 basket: state.basket.filter((item, index) => action.id !== index)
             }
+
         case SET_QUANTITY:
             console.log("state in action ",state.basket)
             return {

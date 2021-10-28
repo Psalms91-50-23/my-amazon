@@ -1,15 +1,29 @@
 import React, { useState } from 'react'
 import "../css/Login.css"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { auth } from "../firebase"
 
 
 const Login = () => {
 
+    const history = useHistory()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
 const signIn = e => {
+
+    e.preventDefault()
+
+    auth
+    .signInWithEmailAndPassword(email,password)
+    .then(auth => {
+
+        console.log("sign in auth ", auth)
+        history.push("/")
+    })
+    .catch(error => {
+        alert(error.message)
+    })
 
 }
 
@@ -38,7 +52,7 @@ const register = e => {
                     <h5>Password</h5>
                     <input type="password" onChange={e => setPassword(e.target.value)} value={password}/> 
 
-                    <button className="login__signInButton">Sign in</button>
+                    <button className="login__signInButton" onClick={e => signIn(e)}>Sign in</button>
                 </form>
                 <p>
                      By continuing, you agree to Amazon's Conditions of Use and Privacy Notice. 
