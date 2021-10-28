@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import "../css/Subtotal.css"
-import CurrencyFormat from 'react-currency-format'
+// import CurrencyFormat from 'react-currency-format'
 import { useSelector } from 'react-redux'
 
 
