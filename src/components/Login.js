@@ -10,33 +10,37 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-const signIn = e => {
+    const signIn = e => {
 
-    e.preventDefault()
+        e.preventDefault()
 
-    auth
-    .signInWithEmailAndPassword(email,password)
-    .then(auth => {
+        auth
+        .signInWithEmailAndPassword(email,password)
+        .then(auth => {
 
-        console.log("sign in auth ", auth)
-        history.push("/")
-    })
-    .catch(error => {
-        alert(error.message)
-    })
+            console.log("sign in auth ", auth)
+            history.push("/")
+        })
+        .catch(error => {
+            alert(error.message)
+        })
 
-}
+    }
 
-const register = e => {
-    e.preventDefault()
+    const register = e => {
+        e.preventDefault()
 
-    auth
-    .createUserWithEmailAndPassword(email,password)
-    .then(auth => {
-        console.log("auth" ,auth)
-    })
-    .catch(error => alert(error.message))
-}
+        auth
+        .createUserWithEmailAndPassword(email,password)
+        .then(auth => {
+            console.log("auth" ,auth)
+            if(auth)
+            {
+                history.push("/")
+            }
+        })
+        .catch(error => alert(error.message))
+    }
 
     return (
         <div className="login">

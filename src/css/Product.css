@@ -17,9 +17,11 @@
 .product > img {
 
     max-height: 150px;
+    min-height: 150px;
     width: 100%;
     object-fit: contain;
     margin-bottom: 15px;
+    margin-top: 20px;
 
 }
 
@@ -53,5 +55,11 @@
 .product__price {
 
     margin-top: 5px;
+
+}
+
+.product__rating {
+
+    margin-bottom: 20px;
 
 }

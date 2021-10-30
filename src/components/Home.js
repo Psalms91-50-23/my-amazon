@@ -13,13 +13,13 @@ const Home = () => {
             </div>
 
             <div className="home__row">
-                <Product itemId={1111} title="Virtual reality" price={29.99} image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Dash_Oculus_1x._SY304_CB667158353_.jpg" rating={2}/>
+                <Product itemId={1111} title="Oculus Virtual reality v2" price={159.99} image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Dash_Oculus_1x._SY304_CB667158353_.jpg" rating={2}/>
 
                 <Product itemId={1232} title="Rice cooker" price={29.99} image="https://m.media-amazon.com/images/I/71WtwEvYDOS._AC_SY200_.jpg" rating={3}/>
 
-                <Product itemId={5454} title="Dream Television" price={29.99} image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_PC_1x._SY304_CB431800965_.jpg" rating={4}/>
+                <Product itemId={5454} title="Macbook Air 13 inch" price={1799.99} image="https://m.media-amazon.com/images/I/71vFKBpKakL._AC_UY327_QL65_.jpg" rating={4}/>
 
-                <Product itemId={4324} title="Virtual reality" price={12.95} image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Dash_Oculus_1x._SY304_CB667158353_.jpg" rating={2}/>
+                <Product itemId={4324} title="Oculus Virtual reality v1" price={129.99} image="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Dash_Oculus_1x._SY304_CB667158353_.jpg" rating={2}/>
 
                 <Product itemId={5123} title="Rice cooker" price={29.99} image="https://m.media-amazon.com/images/I/71WtwEvYDOS._AC_SY200_.jpg" rating={3}/>
 
