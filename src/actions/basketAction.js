@@ -1,10 +1,10 @@
-import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from "react-dom"
 
 export const ADD_TO_BASKET = "ADD_TO_BASKET"
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const SET_QUANTITY = "SET_QUANTITY"
 export const ADD_ID_QTY = "ADD_ID_QTY"
 export const SET_ID = "SET_ID"
+export const SET_USER = "SET_USER"
 
 
 export function addToCartAction( itemId, title, price, image, rating ) {
@@ -56,6 +56,14 @@ export function setIdAction(id){
         type: SET_ID,
         id
 
-
     }
+}
+
+export function setUser(user){
+
+    return {
+        type: SET_USER,
+        user
+    }
+
 }

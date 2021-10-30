@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import "../css/Product.css"
 import { Rating, RatingView } from 'react-simple-star-rating'
 import { connect } from 'react-redux'
-import { addToCartAction, removeFromCartAction } from '../actions/basketAction'
+import { addToCartAction } from '../actions/basketAction'
 
 const Product = ({ itemId, title, image, price, rating, dispatch, checkState }) => {
 
 
-    const [ checkout, setCheckout ] = useState(false)
+    // const [ checkout, setCheckout ] = useState(false)
 
     const addToBasket = () => {
 

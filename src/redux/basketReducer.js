@@ -1,9 +1,10 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, ADD_ID_QTY, SET_ID } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER } from '../actions/basketAction'
 
 const initialState = {
 
     basket: [],
+    user: null
 
 }
 
@@ -32,19 +33,21 @@ const basketReducer = (state = initialState, action) => {
             }
           
         case REMOVE_FROM_CART:
+
             return {
                 ...state,
                 basket: state.basket.filter((item, index) => action.id !== index)
             }
+
         case SET_QUANTITY:
-            console.log("state in action ",state.basket)
+            // console.log("state in action ",state.basket)
             return {
                 ...state,
                 basket: state.basket.map((item,index) => {
 
                     if(index === action.id)
                     {
-                        return {...item, quantity: action.quantity}
+                        return {...item, quantity: Number(action.quantity)}
                     }
                     else{
                         return item
@@ -68,6 +71,15 @@ const basketReducer = (state = initialState, action) => {
                 })
 
             }
+        
+        case SET_USER:
+
+        return {
+
+            ...state,
+            user: action.user
+            
+        }
 
         default:
             return state
