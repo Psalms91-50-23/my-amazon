@@ -5,6 +5,7 @@ export const SET_QUANTITY = "SET_QUANTITY"
 export const ADD_ID_QTY = "ADD_ID_QTY"
 export const SET_ID = "SET_ID"
 export const SET_USER = "SET_USER"
+export const SET_PROFILE_NAME = "SET_PROFILE_NAME"
 
 
 export function addToCartAction( itemId, title, price, image, rating ) {
@@ -62,8 +63,20 @@ export function setIdAction(id){
 export function setUser(user){
 
     return {
+
         type: SET_USER,
         user
+
     }
 
+}
+
+export function setDisplayName(profileName){
+
+    return {
+
+        type: SET_PROFILE_NAME,
+        profileName
+
+    }
 }
