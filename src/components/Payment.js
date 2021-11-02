@@ -55,7 +55,7 @@ const Payment = () => {
     },[basket])
 
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
 
         e.preventDefault()
         setProcessing(true)
@@ -90,7 +90,7 @@ const Payment = () => {
     
         const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        // setCurrentTotal(totalPrice.toFixed(2))
+        setCurrentTotal(totalPrice.toFixed(2))
         dispatch(setTotalPrice(totalPrice.toFixed(2)))
     
     }
