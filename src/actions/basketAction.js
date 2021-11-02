@@ -7,7 +7,7 @@ export const SET_ID = "SET_ID"
 export const SET_USER = "SET_USER"
 export const SET_PROFILE_NAME = "SET_PROFILE_NAME"
 export const SET_GEOLOCATION = "SET_GEOLOCATION"
-
+export const SET_TOTAL_PRICE = "SET_TOTAL_PRICE"
 
 export function addToCartAction( itemId, title, price, image, rating ) {
 
@@ -91,4 +91,14 @@ export function setGeoLocation(geoLocation){
 
     }
 
+}
+
+export function setTotalPrice(totalPrice){
+
+    return {
+
+        type: SET_TOTAL_PRICE,
+        totalPrice
+
+    }
 }

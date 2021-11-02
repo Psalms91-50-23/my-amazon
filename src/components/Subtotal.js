@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import "../css/Subtotal.css"
 // import CurrencyFormat from 'react-currency-format'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-
+import { setTotalPrice } from '../actions/basketAction'
 
 const Subtotal = () => {
 
 
+    const dispatch = useDispatch()
     const history = useHistory()
     const basket = useSelector(state => state.cart.basket)
     const [ total, setTotal ] = useState(0)
@@ -16,7 +17,7 @@ const Subtotal = () => {
 
         if(basket.length)
         {
-            totalPrice(basket)
+            setTotal(getTotalPrice(basket))
             // console.log("total price ", total)
         }
         else{
@@ -25,17 +26,31 @@ const Subtotal = () => {
 
     },[basket])
 
-
-    function totalPrice(cart){
+    function getTotalPrice(cart){
 
        
-        const totalPriceArray = cart.map((item, index) => item.quantity? item.price*item.quantity : item.price) 
+        const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
         // console.log("total price array ", totalPriceArray)
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        setTotal(totalPrice)
-
+        // setTotal(totalPrice)
+        dispatch(setTotalPrice(totalPrice))
+        return totalPrice
+    
     }
 
+    function goCheckout(e){
+
+        if(basket.length)
+        {
+            history.push("/payment")
+        }
+        else{
+            history.push("/")
+        }
+        
+    }
+
+    console.log("history ",history)
     return (
 
         <div className="subtotal">
@@ -44,10 +59,11 @@ const Subtotal = () => {
                 <input type="checkbox" /> This order contains a gift
             </small>
             <div className="button__container">
-                <button onClick={ e => history.push("/payment")}>Proceed to Checkout</button>
+                <button onClick={ e => goCheckout(e)}>Proceed to Checkout</button>
             </div>
         </div>
     )
 }
+
 
 export default Subtotal

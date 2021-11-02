@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import "../css/CartItem.css"
 import { Rating, RatingView } from 'react-simple-star-rating'
 import { removeFromCartAction, setQtyAction, setIdAction } from '../actions/basketAction'
+import { useHistory } from 'react-router-dom'
 
 const CartItem = ({ id, itemId, image, title, price, rating }) => {
 
     const basket = useSelector(state => state.cart.basket)
-
+    const history = useHistory()
     
     const [ itemQuantity, setItemQuanity ] = useState(1)
 
@@ -34,6 +35,8 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
             
         })        
         
+   
+
     },[basket])
 
     const onChangeSetQuanity = (e) => {
@@ -45,6 +48,7 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
     const removeFromBasket = () =>  {
 
         dispatch(removeFromCartAction(id))
+    
 
     }
 
@@ -69,7 +73,7 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
                         <label htmlFor="cartItem__quantity"><strong>QTY:</strong></label>
                         <input type="text"id="cartItem__quantity"  maxLength={3} onChange={(e)=>onChangeSetQuanity(e)} value={itemQuantity}/>
                         {/* <input type="submit"/> */}
-                        <button className="form__button" type="submit">add QTY</button>
+                        <button className="form__button" type="submit">submit</button>
                     </form>
                 </div>
                  <RatingView ratingValue={rating} />

@@ -1,11 +1,12 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_GEOLOCATION } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_GEOLOCATION, SET_TOTAL_PRICE } from '../actions/basketAction'
 
 const initialState = {
 
     basket: [],
     user: null,
-    profileName: null
+    profileName: null,
+    totalPrice: null
 
 }
 
@@ -97,6 +98,15 @@ const basketReducer = (state = initialState, action) => {
             
         }
 
+        case SET_TOTAL_PRICE:
+
+            return {
+
+                ...state,
+                totalPrice: action.totalPrice
+
+            }
+            
         default:
             return state
 

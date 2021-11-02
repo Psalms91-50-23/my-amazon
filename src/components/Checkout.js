@@ -4,6 +4,8 @@ import "../css/Checkout.css"
 import { useSelector } from 'react-redux';
 import Product from './Product';
 import CartItem from './CartItem';
+import { NavLink } from 'react-router-dom';
+
 
 const Checkout = () => {
 
@@ -18,13 +20,12 @@ const Checkout = () => {
                      <h2>Shopping Cart
                      </h2>
                      {/* <a href="#">Deselect all items</a> */}
-                     
+                    
                  </div>
-                 <div className="checkout__right">
-                    <Subtotal />
-                </div>  
+                 
                  <div className="cart__item">
-                 {basket?.map((item, i) => {
+                     {basket.length? 
+                    ( basket?.map((item, i) => {
 
                         return (
                     
@@ -32,10 +33,16 @@ const Checkout = () => {
 
                         )
 
-                        })}
+                    }))
+                    :
+                     <NavLink to="/">Nothing in Cart, Go add products</NavLink>
+                    }
+                
                 </div>
-                {/* <Subtotal />        */}
             </div>
+            <div className="checkout__right">
+                <Subtotal />
+            </div> 
            
         </div>
     )
