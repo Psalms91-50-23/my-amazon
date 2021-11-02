@@ -7,8 +7,8 @@ import { NavLink, useHistory } from 'react-router-dom'
 import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format';
 // import { getTotalPrice } from './Subtotal'
-import { setQtyAction, setTotalPrice } from '../actions/basketAction'
-
+import {  setTotalPrice } from '../actions/basketAction'
+import axios from "../axios" //local file axios
 
 const Payment = () => {
 
@@ -16,35 +16,37 @@ const Payment = () => {
     const { basket, user, totalPrice } = useSelector(state => state.cart)
     const stripe = useStripe()
     const elements =  useElements()
-    const dispatch = useDispatch()
+    const dispatch = useDispatch() 
     const history = useHistory()
 
     const [ error, setError ] = useState(null)
-    const [ disable, setDisable ] = useState(true)
+    const [ disabled, setDisabled ] = useState(true)
+    const [ succeeded, setSucceeded ] = useState(false)
+    const [ processing, setProcessing ] = useState("")
     const [ currentTotal, setCurrentTotal ] = useState(0)
+    const [ clientSecret, setClientSecret ] = useState(true)
 
-
-
- 
-    const handleSubmit = e => {
-
-
-
-    }
-
-    const handleChange = e => {
-
-        setDisable(e.empty)
-        setError(e.error ? e.error.message : "")
-
-    }
 
     useEffect(() => {
+
 
         if(basket.length)
         {
             // setCurrentTotal(totalPrice?.toFixed(2))
             seTotalPrice(basket)
+            const getClientSecret = async () => {
+
+                const response = await axios({
+
+                    method: "post",
+                    //Stripe expects the total in a currency
+                    url: `/payments/create?total=${totalPrice*100}`
+
+                })
+                setClientSecret(response.data.clientSecret)
+
+            }
+            getClientSecret()
         }
         else if(!basket.length) //if no items found in basket, take them back to product page
         {
@@ -52,12 +54,44 @@ const Payment = () => {
         }
     },[basket])
 
+
+    const handleSubmit = e => {
+
+        e.preventDefault()
+        setProcessing(true)
+
+        //client secret is how much Stripe knows how much to charge
+        const payload = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: elements.getElement(CardElement)
+            }
+        }).then(({paymentIntent}) => {//comes back with response but we destructuring
+            //paymentIntent (is what Stripe calls it) = payment confirmation
+
+            setSucceeded(true)
+            setError(null)
+            setProcessing(false)
+
+            history.replace("/orders")
+
+        }) 
+    }
+
+    const handleChange = e => {
+
+        setDisabled(e.empty)
+        setError(e.error ? e.error.message : "")
+
+    }
+
+   
+
     function seTotalPrice(cart){
     
         const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        setCurrentTotal(totalPrice.toFixed(2))
-        dispatch(setTotalPrice(totalPrice))
+        // setCurrentTotal(totalPrice.toFixed(2))
+        dispatch(setTotalPrice(totalPrice.toFixed(2)))
     
     }
 
@@ -91,8 +125,14 @@ const Payment = () => {
 
                             return (
                             
-                            <CartItem key={i} id={i}
-                             itemId={item.itemId} title={item.title} image={item.image} price={item.price} rating={item.rating}/>
+                            <CartItem key={i} 
+                                id={i}
+                                itemId={item.itemId} 
+                                title={item.title} 
+                                image={item.image} 
+                                price={item.price} 
+                                rating={item.rating}
+                             />
                              
                         )})
                         }
@@ -110,17 +150,19 @@ const Payment = () => {
                         <form onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange}/>
                             <div className="payment__priceContainer">
-                            <CurrencyFormat 
-                                renderText={(value) => {
-                                    <h3>Order Total: {value}</h3>
-                                }}
-                                decimalScale={2}
-                                value={totalPrice? totalPrice : 0}
-                                displayType={"text"}
-                                thousandSeparator={true}
-                                prefix={"$"}
-                            />
-
+                                <CurrencyFormat 
+                                    renderText={(value) => {
+                                        <h3>Order Total: {value}</h3>
+                                    }}
+                                    decimalScale={2}
+                                    value={totalPrice? totalPrice : 0}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"}
+                                />
+                                <button disabled={ processing || disabled || succeeded } >
+                                    <span>{processing? <p>Processing</p> : "Buy now"}</span>
+                                </button>
                             </div>
                         </form>
                     </div>
