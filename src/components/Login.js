@@ -31,6 +31,7 @@ const Login = () => {
             if(auth)
             {
                 // console.log("profile name ", profileName)
+                // console.log("history ",history)
                 dispatch(setDisplayName(profileName))
                 history.push("/")
             }
@@ -52,6 +53,7 @@ const Login = () => {
             if(auth)
             {
                 dispatch(setDisplayName(profileName))
+                console.log("history ",history)
                 history.push("/")
             }
         })

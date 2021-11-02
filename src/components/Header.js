@@ -55,7 +55,7 @@ const Header = () => {
                 {/* original code had to={ !user && "/login"}  which stuffed me up for ages can aslo do user? "" : "/login" will do the same as below link*/}
                 <NavLink to={ !user? "/login" : "" }>
                     <div className="header__option" onClick={handleAuthentication}>
-                        <span className="header__optionLineOne">Hello {user?.displayName? user.displayName : user? user.email : "Guest"}</span>
+                        <span className="header__optionLineOne">Hello { user?.displayName? user.displayName : user? user.email : "Guest"}</span>
                         <span className="header__optionLineTwo">{user? "Sign out":"Sign in"}
                         </span>
                     </div>

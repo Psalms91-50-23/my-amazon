@@ -1,5 +1,5 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_GEOLOCATION } from '../actions/basketAction'
 
 const initialState = {
 
@@ -27,8 +27,10 @@ const basketReducer = (state = initialState, action) => {
             else{
 
                 return {
+
                     ...state,
                     basket: [...state.basket, action.item]
+
                  }
 
             }
@@ -36,13 +38,16 @@ const basketReducer = (state = initialState, action) => {
         case REMOVE_FROM_CART:
 
             return {
+
                 ...state,
                 basket: state.basket.filter((item, index) => action.id !== index)
+
             }
 
         case SET_QUANTITY:
             // console.log("state in action ",state.basket)
             return {
+
                 ...state,
                 basket: state.basket.map((item,index) => {
 
@@ -55,6 +60,7 @@ const basketReducer = (state = initialState, action) => {
                     }
                 })
             }
+
         case SET_ID:
             
             return {

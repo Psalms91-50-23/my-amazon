@@ -6,6 +6,7 @@ export const ADD_ID_QTY = "ADD_ID_QTY"
 export const SET_ID = "SET_ID"
 export const SET_USER = "SET_USER"
 export const SET_PROFILE_NAME = "SET_PROFILE_NAME"
+export const SET_GEOLOCATION = "SET_GEOLOCATION"
 
 
 export function addToCartAction( itemId, title, price, image, rating ) {
@@ -79,4 +80,15 @@ export function setDisplayName(profileName){
         profileName
 
     }
+}
+
+export function setGeoLocation(geoLocation){
+
+    return {
+
+        type: SET_GEOLOCATION,
+        geoLocation
+
+    }
+
 }

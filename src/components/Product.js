@@ -4,7 +4,7 @@ import { Rating, RatingView } from 'react-simple-star-rating'
 import { connect } from 'react-redux'
 import { addToCartAction } from '../actions/basketAction'
 
-const Product = ({ itemId, title, image, price, rating, dispatch, checkState }) => {
+const Product = ({ itemId, title, image, price, rating, dispatch }) => {
 
 
     // const [ checkout, setCheckout ] = useState(false)
@@ -22,6 +22,7 @@ const Product = ({ itemId, title, image, price, rating, dispatch, checkState }) 
 
 
     return (
+
         <div className="product">
             <div className="product__info">
                 <p>{title}</p>
@@ -40,6 +41,7 @@ const Product = ({ itemId, title, image, price, rating, dispatch, checkState }) 
            }
              */}
         </div>
+        
     )
 }
 

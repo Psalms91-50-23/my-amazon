@@ -8,16 +8,30 @@ import Checkout from '../src/components/Checkout';
 import Login from './components/Login';
 import { Route  } from 'react-router-dom'
 import { auth } from "./firebase"
+import Payment from './components/Payment';
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements } from '@stripe/react-stripe-js';
+
+
 
 function App() {
 
     const { user, basket, profileName } = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
+    if('geolocation' in navigator) {
+        /* geolocation is available */
+        // console.log("geoLocation available")
+    } else {
+        /* geolocation IS NOT available */
+        // console.log("geoLocation not available")
+      }
+      
+
     useEffect(() => {
 
             auth.onAuthStateChanged((authUser) => {
-                console.log("the user is ===> ", authUser)
+            
                 
                 if(authUser && profileName)
                 {
@@ -27,7 +41,7 @@ function App() {
                  
                 }else if(authUser){
                     
-                    // dispatch(setUser(null))
+                
                     dispatch(setUser(authUser))
                 }
                 else{
@@ -38,17 +52,9 @@ function App() {
         
     },[profileName])
 
-    useEffect(() => {
-
-
-
-    },[user])
-
   return (
       
- 
       <div className="app">
-        {/* <Route path="/" component={Header}/> */}
         <Route exact path="/">
             <Header />
             <Home />
@@ -57,12 +63,12 @@ function App() {
             <Header />
             <Checkout />
         </Route>
-        {/* <Route path="/options">
-            <h1>check me out my options</h1>
-        </Route> */}
+        <Route path="/payment">
+            <Header />
+            <Payment />
+        </Route>
         <Route path="/login" component={Login} />
       </div>
- 
     
   );
 }

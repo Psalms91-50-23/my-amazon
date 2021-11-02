@@ -58,7 +58,9 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
     return (
 
         <div className="cartItem">
-            <img src={image} alt="" className="cartItem__image" />
+            <div className="cartItem__image__container">
+                <img src={image} alt="" className="cartItem__image" />
+            </div>
             <div className="cartItem__info">
                  <p>{title}</p>
                 <div className="cartItem__price__quantity">
@@ -67,7 +69,7 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
                         <label htmlFor="cartItem__quantity"><strong>QTY:</strong></label>
                         <input type="text"id="cartItem__quantity"  maxLength={3} onChange={(e)=>onChangeSetQuanity(e)} value={itemQuantity}/>
                         {/* <input type="submit"/> */}
-                        <button className="form__button" type="submit">submit</button>
+                        <button className="form__button" type="submit">add QTY</button>
                     </form>
                 </div>
                  <RatingView ratingValue={rating} />
