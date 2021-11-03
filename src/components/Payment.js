@@ -7,7 +7,7 @@ import { NavLink, useHistory } from 'react-router-dom'
 import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format';
 // import { getTotalPrice } from './Subtotal'
-import {  setTotalPrice } from '../actions/basketAction'
+import {  setTotalPrice, emptyBasket } from '../actions/basketAction'
 import axios from "../axios" //local file axios
 
 const Payment = () => {
@@ -34,26 +34,32 @@ const Payment = () => {
         {
             // setCurrentTotal(totalPrice?.toFixed(2))
             seTotalPrice(basket)
+            console.log("total price ", totalPrice)
             const getClientSecret = async () => {
 
                 const response = await axios({
 
                     method: "post",
+                    url: `/payment/create?total=${totalPrice*100}`,
+                    // withCredentials: false  
                     //Stripe expects the total in a currency
-                    url: `/payments/create?total=${totalPrice*100}`
 
                 })
-                setClientSecret(response.data.clientSecret)
 
+                // console.log("response in payment.js ",response);
+              
+                setClientSecret(response.data.clientSecret) 
+                
             }
-            getClientSecret()
+            getClientSecret(emptyBasket())
         }
-        else if(!basket.length) //if no items found in basket, take them back to product page
-        {
-            history.push("/")
-        }
-    },[basket])
+        // // else if(!basket.length) //if no items found in basket, take them back to product page
+        // {
+        //     // history.push("/")
+        // }
+    },[])
 
+    console.log("client secret ", clientSecret);
 
     const handleSubmit = async e => {
 
@@ -72,9 +78,13 @@ const Payment = () => {
             setError(null)
             setProcessing(false)
 
+            dispatch(emptyBasket())
             history.replace("/orders")
 
         }) 
+
+        // console.log("payload payment.js ", payload)
+    
     }
 
     const handleChange = e => {
@@ -84,7 +94,6 @@ const Payment = () => {
 
     }
 
-   
 
     function seTotalPrice(cart){
     

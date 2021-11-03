@@ -50,7 +50,7 @@ const Subtotal = () => {
         
     }
 
-    console.log("history ",history)
+    // console.log("history ",history)
     return (
 
         <div className="subtotal">

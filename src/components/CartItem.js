@@ -73,7 +73,7 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
                         <label htmlFor="cartItem__quantity"><strong>QTY:</strong></label>
                         <input type="text"id="cartItem__quantity"  maxLength={3} onChange={(e)=>onChangeSetQuanity(e)} value={itemQuantity}/>
                         {/* <input type="submit"/> */}
-                        <button className="form__button" type="submit">submit</button>
+                        <button className="form__button" type="submit">set</button>
                     </form>
                 </div>
                  <RatingView ratingValue={rating} />

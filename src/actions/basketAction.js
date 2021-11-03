@@ -8,6 +8,7 @@ export const SET_USER = "SET_USER"
 export const SET_PROFILE_NAME = "SET_PROFILE_NAME"
 export const SET_GEOLOCATION = "SET_GEOLOCATION"
 export const SET_TOTAL_PRICE = "SET_TOTAL_PRICE"
+export const EMPTY_BASKET = "EMPTY_BASKET"
 
 export function addToCartAction( itemId, title, price, image, rating ) {
 
@@ -100,5 +101,14 @@ export function setTotalPrice(totalPrice){
         type: SET_TOTAL_PRICE,
         totalPrice
 
+    }
+}
+
+export function emptyBasket(){
+
+    return {
+
+        type: EMPTY_BASKET,
+        
     }
 }
