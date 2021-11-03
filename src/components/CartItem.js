@@ -68,7 +68,7 @@ const CartItem = ({ id, itemId, image, title, price, rating }) => {
             <div className="cartItem__info">
                  <p>{title}</p>
                 <div className="cartItem__price__quantity">
-                    <strong>$ {price}</strong>
+                    <strong>$ {price.toFixed(2)}</strong>
                     <form  onSubmit={(e) => onSubmit(e)}>
                         <label htmlFor="cartItem__quantity"><strong>QTY:</strong></label>
                         <input type="text"id="cartItem__quantity"  maxLength={3} onChange={(e)=>onChangeSetQuanity(e)} value={itemQuantity}/>

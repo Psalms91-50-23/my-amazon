@@ -6,6 +6,7 @@ import Header from '../src/components/Header';
 import Home from '../src/components/Home';
 import Checkout from '../src/components/Checkout';
 import Login from './components/Login';
+import Order from './components/Order';
 import { Route  } from 'react-router-dom'
 import { auth } from "./firebase"
 import Payment from './components/Payment';
@@ -40,12 +41,14 @@ function App() {
                     dispatch(setUser(userProfile))
                  
                 }else if(authUser){
-                    
-                
+                             
                     dispatch(setUser(authUser))
+
                 }
                 else{
+
                     dispatch(setUser(null))
+
                 }
     
             })
@@ -55,7 +58,19 @@ function App() {
   return (
       
       <div className="app">
-        <Route exact path="/">
+          <Route path="/" component={Header}/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/checkout" component={Checkout}/>
+          {/* <Route path="/payment" component={Payment}/> */}
+          <Route path="/payment">
+            <Elements stripe={promise}>
+                <Payment />
+            </Elements>
+          </Route>
+          <Route path="/orders" component={Order}/>
+          <Route path="/login" component={Login}/>
+         
+        {/* <Route exact path="/">
             <Header />
             <Home />
         </Route>
@@ -69,7 +84,11 @@ function App() {
                 <Payment />
             </Elements>
         </Route>
-        <Route path="/login" component={Login} />
+        <Route to="/orders">
+            <Header />
+            <Order />
+        </Route>
+        <Route path="/login" component={Login} /> */}
       </div>
     
   );

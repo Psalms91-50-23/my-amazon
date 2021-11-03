@@ -18,7 +18,6 @@ const Subtotal = () => {
         if(basket.length)
         {
             setTotal(getTotalPrice(basket))
-            // console.log("total price ", total)
         }
         else{
             setTotal(0)
@@ -28,11 +27,8 @@ const Subtotal = () => {
 
     function getTotalPrice(cart){
 
-       
         const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
-        // console.log("total price array ", totalPriceArray)
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        // setTotal(totalPrice)
         dispatch(setTotalPrice(totalPrice))
         return totalPrice
     

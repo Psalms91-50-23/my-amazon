@@ -6,9 +6,9 @@ import "../css/Checkout.css"
 import { NavLink, useHistory } from 'react-router-dom'
 import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format';
-// import { getTotalPrice } from './Subtotal'
 import {  setTotalPrice, emptyBasket } from '../actions/basketAction'
 import axios from "../axios" //local file axios
+import { db } from  "../firebase"
 
 const Payment = () => {
 
@@ -41,7 +41,6 @@ const Payment = () => {
 
                     method: "post",
                     url: `/payment/create?total=${totalPrice*100}`,
-                    // withCredentials: false  
                     //Stripe expects the total in a currency
 
                 })
@@ -57,7 +56,7 @@ const Payment = () => {
         // {
         //     // history.push("/")
         // }
-    },[])
+    },[basket])
 
     console.log("client secret ", clientSecret);
 
@@ -71,8 +70,18 @@ const Payment = () => {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then(({paymentIntent}) => {//comes back with response but we destructuring
+        }).then( response  => {//comes back with response but we destructuring
             //paymentIntent (is what Stripe calls it) = payment confirmation
+            const { paymentIntent } = response
+            db.collection("users")//nosql data structure, users table
+            .doc(user?.id)
+            .collection("orders") //orders table
+            .doc(paymentIntent.uid) //order uid
+            .set({
+                basket: basket,
+                amount: paymentIntent.amount, //comes back from stripe
+                created: paymentIntent.created
+            })
 
             setSucceeded(true)
             setError(null)
@@ -153,13 +162,15 @@ const Payment = () => {
                     </div>
                     <div className="payment__details">
                         {/* stripe magic */}
-                        <p>
-                            Total price: {currentTotal? currentTotal: 0 }
-                        </p>
+                        
                         <form onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange}/>
                             <div className="payment__priceContainer">
-                                <CurrencyFormat 
+                                <p><strong>
+                                    Total price: {currentTotal? currentTotal: 0 }
+                                </strong>
+                                </p>
+                                {/* <CurrencyFormat 
                                     renderText={(value) => {
                                         <h3>Order Total: {value}</h3>
                                     }}
@@ -168,7 +179,7 @@ const Payment = () => {
                                     displayType={"text"}
                                     thousandSeparator={true}
                                     prefix={"$"}
-                                />
+                                /> */}
                                 <button disabled={ processing || disabled || succeeded } >
                                     <span>{processing? <p>Processing</p> : "Buy now"}</span>
                                 </button>

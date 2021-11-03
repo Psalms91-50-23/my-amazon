@@ -1,5 +1,5 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_GEOLOCATION, SET_TOTAL_PRICE, EMPTY_BASKET } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_TOTAL_PRICE, EMPTY_BASKET } from '../actions/basketAction'
 
 const initialState = {
 
@@ -112,7 +112,7 @@ const basketReducer = (state = initialState, action) => {
 
                 ...state,
                 basket: []
-                
+
             }
         default:
             return state

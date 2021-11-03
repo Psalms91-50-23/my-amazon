@@ -11,7 +11,9 @@ const app = express()
 
 
 //Middlewares
-app.use(cors({origin: true}))
+// app.use(cors({origin: true}))
+//origin is the local host you are allowing to cross realm
+app.use(cors({origin: "http://localhost:3000"}))
 app.use(express.json())
 
 
@@ -19,6 +21,9 @@ app.use(express.json())
 app.get("/",(req,res) => {
     res.status(200).send("hello world")
 })
+
+// var cors = require('cors');    
+// app.use(cors({credentials: true, origin: 'http://localhost:5000'}));
 
 app.post("/payment/create", async (req,res) => {
 
@@ -28,7 +33,7 @@ app.post("/payment/create", async (req,res) => {
 
     console.log("Payment Request Recieved amount is >>> ", total)
 
-    //the amount cant be decimals, it is x100 in payment.js fromt client side, it receives in cents
+    //the amount cant be decimals, it is x100 in payment.js from client side, it receives in cents
     const paymentIntent = await stripe.paymentIntents.create({
         amount: total, //subunits of currency
         currency: "nzd",
@@ -43,7 +48,6 @@ app.post("/payment/create", async (req,res) => {
     })
 
    
-
 })
 
 
