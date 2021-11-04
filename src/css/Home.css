@@ -1,4 +1,4 @@
-
+/* 
 .home {
 
     display: flex;
@@ -7,8 +7,8 @@
     margin: 0px auto;
     max-width: 1500px;
 
-}
-
+} */
+/* 
 .home__container {
 
     display: flex;
@@ -28,12 +28,94 @@
 
 .home__image {
 
-    /* it makes the image size of viewport 100% */
+    /* it makes the image size of viewport 100% 
     width: 100%;
-    /* object-fit: contain; */
+    /* object-fit: contain; 
     z-index: -1;
     margin-bottom: -150px;
-    /* below code adds image fading at bottom  */
+    /* below code adds image fading at bottom  
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))
 
+} */
+
+.home {
+
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1500px;
+    flex-direction: column;
+
+  }
+  
+  .home__row {
+
+    display: flex;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+
+  }
+  
+  .home__image {
+
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+  }
+
+  .home__row__middle {
+
+    display: flex;
+    flex-direction: rows;
+    flex-wrap: wrap;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+
+  }
+
+  .home__row__bottom {
+
+    display: flex;
+    flex-direction: rows;
+    flex-wrap: wrap;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100%;
+
+  }
+
+  .home__container {
+
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    
 }
+
+@media only screen and (max-width: 600px){
+
+  .home__row {
+
+    flex-direction: column;
+
+  }
+
+}
+
+/* @media only screen and (max-width: 600px){
+
+  .home__row__middle {
+
+    flex-direction: column;
+
+  }
+
+} */
