@@ -88,7 +88,7 @@ const Payment = () => {
             .set({
                 basket: basket,
                 amount: paymentIntent.amount, //comes back from stripe
-                created: paymentIntent.created
+                created: paymentIntent.created 
             })
 
             setSucceeded(true)
@@ -188,7 +188,7 @@ const Payment = () => {
                                     value={totalPrice? totalPrice : 0}
                                     displayType={"text"}
                                     thousandSeparator={true}
-                                    prefix={"$"} 
+                                    prefix={"$NZD "} 
                                 />
                                 {/* <CurrencyFormat 
                                     renderText={(value) => {

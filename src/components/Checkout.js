@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Subtotal from './Subtotal'
 import "../css/Checkout.css"
 import { useSelector } from 'react-redux';
-import Product from './Product';
 import CartItem from './CartItem';
 import { NavLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';

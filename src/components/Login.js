@@ -53,14 +53,12 @@ const Login = () => {
             if(auth)
             {
                 dispatch(setDisplayName(profileName))
-                console.log("history ",history)
+                // console.log("history ",history)
                 history.push("/")
             }
         })
         .catch(error => alert(error.message))
     }
-
-
 
     return (
         <div className="login">
