@@ -23,7 +23,12 @@ const Product = ({ itemId, title, image, price, rating, dispatch }) => {
                     <strong>$ {price.toFixed(2)}</strong>
                 </p>
                 <div className="product__rating">  
-                    <RatingView ratingValue={rating} /* RatingView Props */ /> 
+                    {Array(rating)
+                    .fill()
+                    .map((_, i) => (
+                        <p key={i}>🌟</p>
+                    ))}
+                     {/* <RatingView ratingValue={rating} />  */}
                 </div>
             </div>
             <img src={image} alt="" />

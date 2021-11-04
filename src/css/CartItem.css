@@ -23,6 +23,13 @@
 
 }
 
+.cartItem__rating {
+
+    display: flex;
+    /* margin-bottom: 20px;
+    height: auto; */
+
+}
 
 .cartItem__image {
 
@@ -60,8 +67,9 @@
 .cartItem__info > button:active {
 
     background-color: #d09b15;
-    /* width: 95%; */
-    /* transform: translate(10px, 0px); */
+    width: 160px;
+    transform: translate(4px,0px);
+   
 }
 .cartItem__info > p {
 
@@ -87,12 +95,18 @@
 
 }
 
+.form__button {
 
+    margin-left: 3px;
+    
+}
 
 @media only screen and (max-width: 900px){
     
     .cartItem{
+
         height: 100%;
+
     }
 
 }

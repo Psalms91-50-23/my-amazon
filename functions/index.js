@@ -38,11 +38,9 @@ app.post("/payment/create", async (req,res) => {
         amount: total, //subunits of currency
         currency: "nzd",
     })
-    // res.header("Access-Control-Allow-Origin", "*");
-    // res.header('Access-Control-Allow-Credentials', false);
+
     console.log("paymentIntent >>>>>> ",paymentIntent)
     // OK - created
-    
     res.status(201).send({
         clientSecret: paymentIntent.client_secret,
     })

@@ -6,7 +6,7 @@ import Header from '../src/components/Header';
 import Home from '../src/components/Home';
 import Checkout from '../src/components/Checkout';
 import Login from './components/Login';
-import Order from './components/Order';
+import Orders from './components/Orders';
 import { Route  } from 'react-router-dom'
 import { auth } from "./firebase"
 import Payment from './components/Payment';
@@ -67,7 +67,7 @@ function App() {
                 <Payment />
             </Elements>
           </Route>
-          <Route path="/orders" component={Order}/>
+          <Route path="/orders" component={Orders}/>
           <Route path="/login" component={Login}/>
          
         {/* <Route exact path="/">

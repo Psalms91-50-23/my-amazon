@@ -22,6 +22,7 @@
     flex: 1;
     justify-content: space-between;
     align-items: center;
+    min-width: 200px;
 
 }
 
@@ -45,15 +46,15 @@
     color: #111; 
     cursor: pointer;
     /* width: 100%; */
-    width: 50%;
+    /* width: 50%; */
+    /* max-width: 300px; */
 
 }
 
 .product > button:active {
 
     background-color: #d09b15;
-    width: 45%;
-    /* transform: translate(10px, 0px); */
+
 }
 
 .product__info {
@@ -73,6 +74,7 @@
 
 .product__rating {
 
+    display: flex;
     margin-bottom: 20px;
     height: auto;
 

@@ -11,6 +11,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
+    min-width: 280px;
 
 }
 
@@ -141,7 +142,7 @@
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 620px) {
     
     .header__logo{
 
@@ -190,7 +191,7 @@
 
     .header__search {
 
-        width: 80%;
+        width: 60%;
  
     }
 

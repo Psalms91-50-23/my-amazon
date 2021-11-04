@@ -9,6 +9,7 @@ import CurrencyFormat from 'react-currency-format';
 import {  setTotalPrice, emptyBasket } from '../actions/basketAction'
 import axios from "../axios" //local file axios
 import { db } from  "../firebase"
+import StoreIcon from '@mui/icons-material/Store';
 
 const Payment = () => {
 
@@ -51,6 +52,10 @@ const Payment = () => {
                 
             }
             getClientSecret(emptyBasket())
+        }else 
+        {
+            setCurrentTotal(0)
+            // history.push("/")
         }
         // // else if(!basket.length) //if no items found in basket, take them back to product page
         // {
@@ -73,10 +78,13 @@ const Payment = () => {
         }).then( response  => {//comes back with response but we destructuring
             //paymentIntent (is what Stripe calls it) = payment confirmation
             const { paymentIntent } = response
-            db.collection("users")//nosql data structure, users table
-            .doc(user?.id)
+            console.log("response ", response);
+
+            db
+            .collection("users")//nosql data structure, users table
+            .doc(user?.uid)
             .collection("orders") //orders table
-            .doc(paymentIntent.uid) //order uid
+            .doc(paymentIntent.id) 
             .set({
                 basket: basket,
                 amount: paymentIntent.amount, //comes back from stripe
@@ -90,7 +98,7 @@ const Payment = () => {
             dispatch(emptyBasket())
             history.replace("/orders")
 
-        }) 
+        }).catch(error => console.error(error.message))
 
         // console.log("payload payment.js ", payload)
     
@@ -138,12 +146,14 @@ const Payment = () => {
                      <div className="payment__title">   
                          <h3>Review Items and delivery</h3>           
                      </div>
+                     {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop</NavLink>)}
                         <div className="payment__items">
                          {basket?.map((item,i) => {
 
                             return (
                             
-                            <CartItem key={i} 
+                            <CartItem 
+                                key={i} 
                                 id={i}
                                 itemId={item.itemId} 
                                 title={item.title} 
@@ -166,10 +176,20 @@ const Payment = () => {
                         <form onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange}/>
                             <div className="payment__priceContainer">
-                                <p><strong>
+                                {/* <p><strong>
                                     Total price: {currentTotal? currentTotal: 0 }
                                 </strong>
-                                </p>
+                                </p> */}
+                                 <CurrencyFormat 
+                                    renderText={(value) => {
+                                        return (<h3 className="order__total">Payment Total: {value}</h3>)
+                                    }}
+                                    decimalScale={2}
+                                    value={totalPrice? totalPrice : 0}
+                                    displayType={"text"}
+                                    thousandSeparator={true}
+                                    prefix={"$"} 
+                                />
                                 {/* <CurrencyFormat 
                                     renderText={(value) => {
                                         <h3>Order Total: {value}</h3>
@@ -184,6 +204,7 @@ const Payment = () => {
                                     <span>{processing? <p>Processing</p> : "Buy now"}</span>
                                 </button>
                             </div>
+                            {error && <div>{error}</div>}
                         </form>
                     </div>
                 </div>         
