@@ -8,10 +8,10 @@ import { useHistory } from 'react-router-dom'
 const CartItem = (props) => {
 
     const {  id, itemId, image, title, price, rating } = props;
-    console.log("props in cartitem ", props)
+    // console.log("props in cartitem ", props)
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
-    console.log("use history ", history);
+    // console.log("use history ", history);
     const { pathname } = history.location
     
     const [ itemQuantity, setItemQuanity ] = useState(1)

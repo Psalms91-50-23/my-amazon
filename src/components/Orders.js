@@ -38,7 +38,7 @@ const Orders = () => {
 
     },[user])
 
-    console.log("orders.js ", orders);
+    // console.log("orders.js ", orders);
     return (
         <div className="orders">
             <h1>Your Orders</h1>

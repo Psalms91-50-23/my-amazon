@@ -29,7 +29,7 @@ const Header = () => {
         if(user)
         {
             auth.signOut()
-            console.log("user ",user)
+            // console.log("user ",user)
         }
 
     }

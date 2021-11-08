@@ -27,11 +27,10 @@ const Login = () => {
         .signInWithEmailAndPassword(email,password)
         .then(auth => {
 
-            console.log("sign in auth ", auth)
+            // console.log("sign in auth ", auth)
             if(auth)
             {
-                // console.log("profile name ", profileName)
-                // console.log("history ",history)
+            
                 dispatch(setDisplayName(profileName))
                 history.push("/")
             }
@@ -53,7 +52,7 @@ const Login = () => {
             if(auth)
             {
                 dispatch(setDisplayName(profileName))
-                console.log("history ",history)
+                // console.log("history ",history)
                 history.push("/")
             }
         })

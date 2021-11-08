@@ -38,6 +38,8 @@ function App() {
                 {
                     
                     const userProfile = {...authUser, displayName: profileName }
+
+                    // console.log("authuser app.js ", authUser)
                     dispatch(setUser(userProfile))
                  
                 }else if(authUser){

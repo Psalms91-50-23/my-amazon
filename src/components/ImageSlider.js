@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { ImageData } from './ImageData'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa"
 
 const ImageSlider = () => {
