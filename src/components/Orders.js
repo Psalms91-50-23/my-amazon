@@ -41,7 +41,7 @@ const Orders = () => {
     // console.log("orders.js ", orders);
     return (
         <div className="orders">
-            <h1>Your Orders</h1>
+            <h1>Your Order History</h1>
             <div className="orders__order">
             { orders?.map((order,i) => {
                return ( <Order key={i} order={order}/>)

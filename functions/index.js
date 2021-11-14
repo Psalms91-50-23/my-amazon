@@ -8,14 +8,13 @@ const stripe = require('stripe')(process.env.REACT_APP_API)
 
 //API
 
-
 //API config
 const app = express()
 
 
 //Middlewares
 
-app.use(cors({origin: "https://khos-17ce8.web.app" }))
+app.use(cors({origin: "https://khos-17ce8.web.app" })) //live for deployment
 // app.use(cors({origin: "http://localhost:3000"})) //for local testing
 
 

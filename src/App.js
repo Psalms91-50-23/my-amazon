@@ -20,14 +20,6 @@ function App() {
     const { user, basket, profileName } = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
-    // if('geolocation' in navigator) {
-    //      geolocation is available 
-    //     // console.log("geoLocation available")
-    // } else {
-    //      geolocation IS NOT available 
-    //     // console.log("geoLocation not available")
-    //   }
-      
 
     useEffect(() => {
 
@@ -61,7 +53,6 @@ function App() {
           <Route path="/" component={Header}/>
           <Route exact path="/" component={Home}/>
           <Route path="/checkout" component={Checkout}/>
-          {/* <Route path="/payment" component={Payment}/> */}
           <Route path="/payment">
             <Elements stripe={promise}>
                 <Payment />
