@@ -2,13 +2,22 @@ import React, { useState } from 'react'
 import "../css/Login.css"
 import { NavLink, useHistory } from 'react-router-dom'
 import { auth } from "../firebase"
+import { setDisplayName } from "../actions/basketAction"
+
+import { useDispatch, useSelector } from 'react-redux'
 
 
 const Login = () => {
 
+    const { user, basket } = useSelector(state => state.cart)
+
+    const dispatch = useDispatch()
     const history = useHistory()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [profileName, setProfileName] = useState("")
+
+
 
     const signIn = e => {
 
@@ -18,8 +27,13 @@ const Login = () => {
         .signInWithEmailAndPassword(email,password)
         .then(auth => {
 
-            console.log("sign in auth ", auth)
-            history.push("/")
+            if(auth)
+            {
+               
+                dispatch(setDisplayName(profileName))
+                history.push("/")
+            }
+            
         })
         .catch(error => {
             alert(error.message)
@@ -33,9 +47,11 @@ const Login = () => {
         auth
         .createUserWithEmailAndPassword(email,password)
         .then(auth => {
-            console.log("auth" ,auth)
+            // console.log("auth" ,auth)
             if(auth)
             {
+                dispatch(setDisplayName(profileName))
+                // console.log("history ",history)
                 history.push("/")
             }
         })
@@ -50,6 +66,10 @@ const Login = () => {
             <div className="login__container">
                 <h1>Sign-in</h1>
                 <form action="" className="login__form__signup">
+{/*                     
+                    <h5>Display Name</h5>
+                    <input type="text" onChange={e => setProfileName(e.target.value)} value={profileName} />  */}
+
                     <h5>E-mail</h5>
                     <input type="text" onChange={e => setEmail(e.target.value)} value={email}/>
 
