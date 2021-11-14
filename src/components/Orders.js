@@ -3,12 +3,15 @@ import { db } from "../firebase"
 import "../css/Orders.css"
 import { useSelector, connect } from 'react-redux'
 import Order from './Order'
+import { useHistory } from 'react-router-dom'
 
 const Orders = () => {
 
     const [ orders, setOrders ] = useState([])
     const { basket, user } = useSelector(state => state.cart )
     // const { dispatch, user, basket } = props
+    const history = useHistory()
+    const { pathname } = history.location
 
     // console.log("props in order ",props)
     // console.log("user ", user)
@@ -22,7 +25,7 @@ const Orders = () => {
             .collection("users")
             .doc(user?.uid) //go into the document on user
             .collection("orders")
-            .orderBy("created","desc") //we already pushed in a created field
+            .orderBy("created","desc") //we already pushed in a created field, in paymetn.js
             .onSnapshot(snapshot => {
             //.docs means returning it as documents
                 setOrders(snapshot.docs.map(doc => ({

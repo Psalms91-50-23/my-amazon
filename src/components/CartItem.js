@@ -7,10 +7,8 @@ import { useHistory } from 'react-router-dom'
 const CartItem = (props) => {
 
     const {  id, itemId, image, title, price, rating, total, qty } = props;
-    // console.log("props in cartitem ", props)
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
-    // console.log("use history ", history);
     const { pathname } = history.location
     
     const [ itemQuantity, setItemQuanity ] = useState(1)
@@ -29,7 +27,7 @@ const CartItem = (props) => {
     useEffect(() => {
         
         //now this has an id to reference and grab this particular cart item to set quantity
-        // console.log("basekt in cartitem ", basket)
+        //console.log("basekt in cartitem ", basket)
         basket.find(item => {
        
            if(item.id === id && item.quantity <= 0 )
@@ -76,7 +74,7 @@ const CartItem = (props) => {
             <div className="cartItem__info">
                  <p>{title}</p>
                 <div className="cartItem__price__quantity">
-                    <strong>Unit price: $ {price.toFixed(2)}</strong>
+                    <strong>Sale price: $ {price.toFixed(2)}</strong>
                     
                     {pathname !== "/orders" ?
                     (
@@ -85,7 +83,7 @@ const CartItem = (props) => {
                                 <label htmlFor="cartItem__quantity"><strong>QTY:</strong></label>
                                 <input type="text"id="cartItem__quantity"  maxLength={3} onChange={(e)=>onChangeSetQuanity(e)} value={itemQuantity}/>
                                 {/* <input type="submit"/> */}
-                                <button className="form__button" type="submit">set</button>
+                                <button className="form__button" type="submit">Set</button>
                             </form>
                         </>
                     )

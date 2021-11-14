@@ -26,11 +26,11 @@ function App() {
             auth.onAuthStateChanged((authUser) => {
             
                 
-                if(authUser && profileName)
+                if(authUser)
                 {
                     
-                    const userProfile = {...authUser, displayName: profileName }
-                    dispatch(setUser(userProfile))
+                    // const userProfile = {...authUser, displayName: profileName }
+                    dispatch(setUser(authUser))
                  
                 }else if(authUser){
                              
@@ -45,7 +45,7 @@ function App() {
     
             })
         
-    },[profileName])
+    },[])
 
   return (
       
@@ -61,25 +61,6 @@ function App() {
           <Route path="/orders" component={Orders}/>
           <Route path="/login" component={Login}/>
          
-        {/* <Route exact path="/">
-            <Header />
-            <Home />
-        </Route>
-        <Route path="/checkout">
-            <Header />
-            <Checkout />
-        </Route>
-        <Route path="/payment">
-            <Header />
-            <Elements stripe={promise}>
-                <Payment />
-            </Elements>
-        </Route>
-        <Route to="/orders">
-            <Header />
-            <Order />
-        </Route>
-        <Route path="/login" component={Login} /> */}
       </div>
     
   );

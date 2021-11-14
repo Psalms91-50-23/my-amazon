@@ -146,7 +146,7 @@ const Payment = () => {
                      <div className="payment__title">   
                          <h3>Review Items and delivery</h3>           
                      </div>
-                     {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop</NavLink>)}
+                     {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
                         <div className="payment__items">
                          {basket?.map((item,i) => {
 

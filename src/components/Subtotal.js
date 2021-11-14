@@ -50,7 +50,7 @@ const Subtotal = () => {
     return (
 
         <div className="subtotal">
-            <p> Subtotal ({basket.length} items):<strong> $NZD {total.toFixed(2)}</strong></p>
+            <p>Subtotal ({basket.length} items):<br/><strong> $NZD {total.toFixed(2)}</strong></p>
             <small className="subtotal__gift">
                 <input type="checkbox" /> This order contains a gift
             </small>
