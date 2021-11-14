@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const CartItem = (props) => {
 
-    const {  id, itemId, image, title, price, rating, total } = props;
+    const {  id, itemId, image, title, price, rating, total, qty } = props;
     // console.log("props in cartitem ", props)
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
@@ -78,7 +78,6 @@ const CartItem = (props) => {
                 <div className="cartItem__price__quantity">
                     <strong>Unit price: $ {price.toFixed(2)}</strong>
                     
-                    <strong>Total price: $ {total?.toFixed(2)}</strong>
                     {pathname !== "/orders" ?
                     (
                         <>
@@ -91,9 +90,9 @@ const CartItem = (props) => {
                         </>
                     )
                     :
-                    ""
+                    <strong>Qty: {qty}</strong>
                     }
-                    
+                    <strong>Total price: $ {total?.toFixed(2)}</strong>
                 </div>
                 <div className="cartItem__rating">
                     {Array(rating)

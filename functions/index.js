@@ -14,10 +14,11 @@ const app = express()
 
 
 //Middlewares
-// app.use(cors({origin: true}))
-//origin is the local host you are allowing to cross realm
-// app.use(cors({origin: "http://localhost:3000"}))
-app.use(cors({origin: "https://khos-17ce8.web.app"}))
+
+app.use(cors({origin: "https://khos-17ce8.web.app" }))
+// app.use(cors({origin: "http://localhost:3000"})) //for local testing
+
+
 app.use(express.json())
 
 
