@@ -27,11 +27,9 @@ const Login = () => {
         .signInWithEmailAndPassword(email,password)
         .then(auth => {
 
-            console.log("sign in auth ", auth)
             if(auth)
             {
-                // console.log("profile name ", profileName)
-                // console.log("history ",history)
+               
                 dispatch(setDisplayName(profileName))
                 history.push("/")
             }
@@ -68,9 +66,9 @@ const Login = () => {
             <div className="login__container">
                 <h1>Sign-in</h1>
                 <form action="" className="login__form__signup">
-                    
+{/*                     
                     <h5>Display Name</h5>
-                    <input type="text" onChange={e => setProfileName(e.target.value)} value={profileName} /> 
+                    <input type="text" onChange={e => setProfileName(e.target.value)} value={profileName} />  */}
 
                     <h5>E-mail</h5>
                     <input type="text" onChange={e => setEmail(e.target.value)} value={email}/>

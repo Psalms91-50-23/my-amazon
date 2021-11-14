@@ -38,13 +38,13 @@ const Orders = () => {
 
     },[user])
 
-    console.log("orders.js ", orders);
+    // console.log("orders.js ", orders);
     return (
         <div className="orders">
             <h1>Your Orders</h1>
             <div className="orders__order">
             { orders?.map((order,i) => {
-               return ( <Order key={i} orderNumber={i} order={order}/>)
+               return ( <Order key={i} order={order}/>)
             })
             }
             </div>

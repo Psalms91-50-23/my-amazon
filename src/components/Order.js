@@ -4,14 +4,14 @@ import CartItem from './CartItem'
 import moment from "moment"
 import CurrencyFormat from 'react-currency-format'
 
-const Order = ({ order, orderNumber }) => {
+const Order = ({ order }) => {
 
     // id, itemId, image, title, price, rating
 
     return (
         <div className="order">
-            <h2>Order No. {orderNumber}</h2>
-            <p className="order__id">{moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}
+            <h2>Order</h2>
+            <p className="order__id">Order Time: {moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}
             </p>
             {order.data.basket?.map((item, i) => {
 
@@ -24,6 +24,8 @@ const Order = ({ order, orderNumber }) => {
                         image={item.image} 
                         price={item.price} 
                         rating={item.rating}
+                        total={item.total}
+                        qty={item.quantity}
                     />)
             })
             }

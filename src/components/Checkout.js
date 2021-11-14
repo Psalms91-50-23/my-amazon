@@ -11,6 +11,8 @@ const Checkout = () => {
 
     const basket = useSelector(state => state.cart.basket)
 
+    // console.log("basket in checkout ", basket)
+
     return (
 
         <div className="checkout">
@@ -30,7 +32,7 @@ const Checkout = () => {
 
                             return (
 
-                                <CartItem key={`${i}_${item.itemId}`} id={i} itemId={item.itemId} title={item.title} image={item.image} price={item.price} rating={item.rating} />
+                                <CartItem key={`${i}_${item.itemId}`} id={i} itemId={item.itemId} title={item.title} image={item.image} price={item.price} rating={item.rating} total={item.total}/>
 
                             )
 

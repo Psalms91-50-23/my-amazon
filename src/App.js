@@ -12,7 +12,7 @@ import { auth } from "./firebase"
 import Payment from './components/Payment';
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from '@stripe/react-stripe-js';
-
+require('dotenv').config()
 const promise = loadStripe("pk_test_51JrBJFCeBeR4kdgii1X8OghJOo35vuMSHLEltHE7BrR5NltaIFOiTUp5aUSXT7K0OKv8gqJiJyTL6Dy6ZbPRrkg100w3dzmjVd")
 
 function App() {

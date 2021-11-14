@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import "../css/CartItem.css"
-import { Rating, RatingView } from 'react-simple-star-rating'
 import { removeFromCartAction, setQtyAction, setIdAction } from '../actions/basketAction'
 import { useHistory } from 'react-router-dom'
 
 const CartItem = (props) => {
 
-    const {  id, itemId, image, title, price, rating } = props;
-    console.log("props in cartitem ", props)
+    const {  id, itemId, image, title, price, rating, total } = props;
+    // console.log("props in cartitem ", props)
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
-    console.log("use history ", history);
+    // console.log("use history ", history);
     const { pathname } = history.location
     
     const [ itemQuantity, setItemQuanity ] = useState(1)
@@ -77,7 +76,9 @@ const CartItem = (props) => {
             <div className="cartItem__info">
                  <p>{title}</p>
                 <div className="cartItem__price__quantity">
-                    <strong>$ {price.toFixed(2)}</strong>
+                    <strong>Unit price: $ {price.toFixed(2)}</strong>
+                    
+                    <strong>Total price: $ {total?.toFixed(2)}</strong>
                     {pathname !== "/orders" ?
                     (
                         <>

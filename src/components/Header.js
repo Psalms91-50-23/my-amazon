@@ -29,7 +29,7 @@ const Header = () => {
         if(user)
         {
             auth.signOut()
-            console.log("user ",user)
+            // console.log("user ",user)
         }
 
     }
@@ -60,10 +60,12 @@ const Header = () => {
                         </span>
                     </div>
                 </NavLink>
-                <div className="header__option">
-                    <span className="header__optionLineOne">Returns</span>
-                    <span className="header__optionLineTwo">& Orders</span>
-                 </div>
+                <NavLink to="/orders">
+                    <div className="header__option">
+                        <span className="header__optionLineOne">Returns</span>
+                        <span className="header__optionLineTwo">& Orders</span>
+                    </div>
+                </NavLink>
                 <div className="header__option">    
                     <span className="header__optionLineOne">Your</span>
                     <span className="header__optionLineTwo">Prime</span> 

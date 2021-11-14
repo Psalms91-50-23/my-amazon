@@ -1,7 +1,6 @@
 import React from 'react'
 import '../css/Home.css'
 import Product from './Product'
-import ImageSlider from './ImageSlider'
 
 const Home = () => {
 
