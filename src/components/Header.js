@@ -42,6 +42,7 @@ const Header = () => {
                     className="header__logo"
                     // src="http://pngimg.com/uploads/amazon/amazon_PNT11.png"
                     src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                    alt=""
                 />
             </NavLink>
              <div className="header__search">

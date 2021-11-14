@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from './actions/basketAction';
 import './App.css';
 import Header from '../src/components/Header';
@@ -17,7 +17,7 @@ const promise = loadStripe("pk_test_51JrBJFCeBeR4kdgii1X8OghJOo35vuMSHLEltHE7BrR
 
 function App() {
 
-    const { user, basket, profileName } = useSelector(state => state.cart)
+    // const { user, basket, profileName } = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
 

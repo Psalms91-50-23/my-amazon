@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Subtotal from './Subtotal'
 import "../css/Checkout.css"
 import { useSelector } from 'react-redux';
@@ -32,7 +32,7 @@ const Checkout = () => {
 
                             return (
 
-                                <CartItem key={`${i}_${item.itemId}`} id={i} itemId={item.itemId} title={item.title} image={item.image} price={item.price} rating={item.rating} total={item.total}/>
+                                <CartItem key={`${i}_${item.itemId}`} id={i} title={item.title} image={item.image} price={item.price} rating={item.rating} total={item.total}/>
 
                             )
 

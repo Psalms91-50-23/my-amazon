@@ -2,22 +2,18 @@ import React, { useState } from 'react'
 import "../css/Login.css"
 import { NavLink, useHistory } from 'react-router-dom'
 import { auth } from "../firebase"
-import { setDisplayName } from "../actions/basketAction"
-
-import { useDispatch, useSelector } from 'react-redux'
+// import { setDisplayName } from "../actions/basketAction"
+// import { useDispatch, useSelector } from 'react-redux'
 
 
 const Login = () => {
 
-    const { user, basket } = useSelector(state => state.cart)
-
-    const dispatch = useDispatch()
+    // const { user, basket } = useSelector(state => state.cart)
+    // const dispatch = useDispatch()
     const history = useHistory()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [profileName, setProfileName] = useState("")
-
-
+    // const [profileName, setProfileName] = useState("")
 
     const signIn = e => {
 
@@ -30,7 +26,7 @@ const Login = () => {
             if(auth)
             {
                
-                dispatch(setDisplayName(profileName))
+                // dispatch(setDisplayName(profileName))
                 history.push("/")
             }
             
@@ -50,7 +46,7 @@ const Login = () => {
             // console.log("auth" ,auth)
             if(auth)
             {
-                dispatch(setDisplayName(profileName))
+                // dispatch(setDisplayName(profileName))
                 // console.log("history ",history)
                 history.push("/")
             }

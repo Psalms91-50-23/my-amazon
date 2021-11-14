@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 const CartItem = (props) => {
 
-    const {  id, itemId, image, title, price, rating, total, qty } = props;
+    const { id, image, title, price, rating, total, qty } = props;
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
     const { pathname } = history.location

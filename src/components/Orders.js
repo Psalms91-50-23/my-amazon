@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { db } from "../firebase"
 import "../css/Orders.css"
-import { useSelector, connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Order from './Order'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
 const Orders = () => {
 
     const [ orders, setOrders ] = useState([])
-    const { basket, user } = useSelector(state => state.cart )
+    const { user } = useSelector(state => state.cart )
     // const { dispatch, user, basket } = props
-    const history = useHistory()
-    const { pathname } = history.location
+    // const history = useHistory()
+    // const { pathname } = history.location
 
     // console.log("props in order ",props)
     // console.log("user ", user)
@@ -55,16 +55,4 @@ const Orders = () => {
     )
 }
 
-// function mapStateToProps(state){
-
-//     return{
-
-//         basket: state.basket,
-//         user: state.user
-
-//     }
-
-// }
-
-// export default connect(mapStateToProps)(Orders)
 export default Orders

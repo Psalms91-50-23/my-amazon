@@ -1,6 +1,6 @@
 import React from 'react'
 import "../css/Product.css"
-import {  RatingView } from 'react-simple-star-rating'
+// import {  RatingView } from 'react-simple-star-rating'
 import { connect } from 'react-redux'
 import { addToCartAction } from '../actions/basketAction'
 
@@ -19,7 +19,6 @@ const Product = ({ itemId, title, image, price, rating, dispatch }) => {
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product__price">
-                    {/* <strong>$ </strong> */}
                     <strong>$ {price.toFixed(2)}</strong>
                 </p>
                 <div className="product__rating">  

@@ -34,7 +34,7 @@ const Subtotal = () => {
     
     }
 
-    function goCheckout(e){
+    function goCheckout(){
 
         if(basket.length)
         {
@@ -55,11 +55,10 @@ const Subtotal = () => {
                 <input type="checkbox" /> This order contains a gift
             </small>
             <div className="button__container">
-                <button onClick={ e => goCheckout(e)}>Proceed to Checkout</button>
+                <button onClick={ goCheckout }>Proceed to Checkout</button>
             </div>
         </div>
     )
 }
-
 
 export default Subtotal

@@ -24,7 +24,7 @@ const Payment = () => {
     const [ disabled, setDisabled ] = useState(true)
     const [ succeeded, setSucceeded ] = useState(false)
     const [ processing, setProcessing ] = useState("")
-    const [ currentTotal, setCurrentTotal ] = useState(0)
+    // const [ currentTotal, setCurrentTotal ] = useState(0)
     const [ clientSecret, setClientSecret ] = useState(true)
 
 
@@ -33,9 +33,8 @@ const Payment = () => {
 
         if(basket.length)
         {
-            // setCurrentTotal(totalPrice?.toFixed(2))
+
             seTotalPrice(basket)
-            // console.log("total price ", totalPrice)
             const getClientSecret = async () => {
 
                 const response = await axios({
@@ -47,20 +46,16 @@ const Payment = () => {
                 })
 
                 // console.log("response in payment.js ",response);
-              
                 setClientSecret(response.data.clientSecret) 
                 
             }
-            getClientSecret(emptyBasket())
+            getClientSecret()
         }else 
         {
-            setCurrentTotal(0)
+            dispatch(setTotalPrice(0))
             // history.push("/")
         }
-        // // else if(!basket.length) //if no items found in basket, take them back to product page
-        // {
-        //     // history.push("/")
-        // }
+
     },[basket])
 
     // console.log("client secret ", clientSecret);
@@ -97,6 +92,7 @@ const Payment = () => {
 
             dispatch(emptyBasket())
             history.replace("/orders")
+            //replace instead of push so that they dont go in a loop when browser back button is pushed
 
         }).catch(error => console.error(error.message))
 
@@ -116,11 +112,10 @@ const Payment = () => {
     
         const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        setCurrentTotal(totalPrice.toFixed(2))
+        // setCurrentTotal(totalPrice.toFixed(2))
         dispatch(setTotalPrice(totalPrice.toFixed(2)))
     
     }
-
 
     return (
 
@@ -172,15 +167,10 @@ const Payment = () => {
                         <h3>Payment Method</h3>
                     </div>
                     <div className="payment__details">
-                        {/* stripe magic */}
-                        
+                        {/* stripe magic */}    
                         <form onSubmit={handleSubmit}>
                             <CardElement onChange={handleChange}/>
                             <div className="payment__priceContainer">
-                                {/* <p><strong>
-                                    Total price: {currentTotal? currentTotal: 0 }
-                                </strong>
-                                </p> */}
                                  <CurrencyFormat 
                                     renderText={(value) => {
                                         return (<h3 className="order__total">Payment Total: {value}</h3>)
@@ -191,16 +181,6 @@ const Payment = () => {
                                     thousandSeparator={true}
                                     prefix={"$NZD "} 
                                 />
-                                {/* <CurrencyFormat 
-                                    renderText={(value) => {
-                                        <h3>Order Total: {value}</h3>
-                                    }}
-                                    decimalScale={2}
-                                    value={totalPrice? totalPrice : 0}
-                                    displayType={"text"}
-                                    thousandSeparator={true}
-                                    prefix={"$"}
-                                /> */}
                                 <button disabled={ processing || disabled || succeeded } >
                                     <span>{processing? <p>Processing</p> : "Buy now"}</span>
                                 </button>
