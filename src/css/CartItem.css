@@ -9,7 +9,6 @@
     /* height: 100%; */
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
-    /* margin: 0px 0px; */
 
 }
 
@@ -26,14 +25,11 @@
 .cartItem__rating {
 
     display: flex;
-    /* margin-bottom: 20px;
-    height: auto; */
 
 }
 
 .cartItem__image {
 
-    /* display: flex; */
     max-width: 160px;
     margin: 10px 0px;
     object-fit: contain;
@@ -45,9 +41,6 @@
     display: flex;
     flex-direction: column;
     margin: 0px 10px;
-    /* width: 100%; */
-    /* max-width: 50%; */
-    /* width: 100%; */
 
 }
 
@@ -136,6 +129,7 @@
 
     }
 
+
 }
 
 @media only screen and (max-width: 490px){
@@ -147,11 +141,17 @@
 
     }
 
-    .cartItem__image{
+    .cartItem__image__container {
 
-        object-fit: contain;
+        align-items: center;
 
     }
+/*        
+    .cartItem__image{
+
+        height: 120px;
+        
+    } */
 
 }
 
@@ -160,18 +160,38 @@
     .cartItem {
 
         max-height: 100%;
+        justify-content: center;
+        flex-direction: column;
 
     }
-    
+
+    .cartItem__info {
+
+        justify-content: flex-start;
+
+    }
+
+    .cartItem__image__container {
+
+        justify-content: center;
+
+    }
+ 
     .cartItem__image{
 
-        object-fit: contain;
+        height: 120px;
 
     }
 
     .cartItem__info > button {
 
-        width: auto;
+        width: 100%;
+
+    }
+
+    .cartItem__info > button:active {
+
+        width: 95%;
 
     }
 
@@ -195,15 +215,27 @@
     
     .cartItem__image {
 
-        object-fit: contain;
+        height: 120px;
 
     }
 
+    .cartItem__image__container {
+
+        justify-content: center;
+
+    }
  
     .cartItem__info > button {
 
-        width: 50%;
+        width: 100%;
     
+    }
+
+    .cartItem__info > button:active {
+
+        background-color: #d09b15;
+        width: 95%;
+       
     }
 
 }
@@ -218,12 +250,6 @@
         
     }
     
-    .cartItem__image {
-
-        object-fit: contain;
-
-    }
-    
     .cartItem__info  {
 
         width: auto;
@@ -232,7 +258,13 @@
 
     .cartItem__info > button {
 
-        width: 90%;
+        width: 100%;
+
+    }
+
+    .cartItem__info > button:active {
+
+        width: 95%;
 
     }
 

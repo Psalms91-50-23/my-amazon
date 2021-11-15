@@ -41,7 +41,7 @@ const Payment = () => {
 
                     method: "post",
                     url: `/payment/create?total=${totalPrice*100}`,
-                    //Stripe expects the total in a currency
+                    //Stripe expects the total in a currencies subunits
 
                 })
 
@@ -65,12 +65,13 @@ const Payment = () => {
         e.preventDefault()
         setProcessing(true)
 
-        //client secret is how much Stripe knows how much to charge
+        //client secret is how much Stripe knows how much to charge user
         const payload = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
-        }).then( response  => {//comes back with response but we destructuring
+        }).then( response  => {
+            //comes back with response but we destructuring
             //paymentIntent (is what Stripe calls it) = payment confirmation
             const { paymentIntent } = response
             // console.log("response ", response);
@@ -96,7 +97,6 @@ const Payment = () => {
 
         }).catch(error => console.error(error.message))
 
-        // console.log("payload payment.js ", payload)
     
     }
 
@@ -110,9 +110,8 @@ const Payment = () => {
 
     function seTotalPrice(cart){
     
-        const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
+        const totalPriceArray = cart.map((item) => item.price*item.quantity) 
         const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        // setCurrentTotal(totalPrice.toFixed(2))
         dispatch(setTotalPrice(totalPrice.toFixed(2)))
     
     }
@@ -191,41 +190,7 @@ const Payment = () => {
                 </div>         
             </div>
         </div>
-        // <div className="payment">
-        //     <div className="payment__container">
-        //         <h1>Checkout ({basket.length} items)</h1>
-        //         <div className="payment__section">
-        //             <div className="payment__title">
-        //                 <h3>Delivery Address</h3>
-        //             </div>
-        //             <div className="payment__address">
-        //                 <h3>Payment Address</h3>
-        //                 <p>{user?.email}</p>
-        //                 <p>123 Random st</p>
-        //                 <p>Los Angeles, CA</p>
-        //             </div>
-        //         </div>
-        //         <div className="payment__section">
-                    
-        //         </div>
-        //         <div className="payment__section">
-        //             <div className="payment__title">   
-        //                 <h3>Review Items and delivery</h3>           
-        //             </div>
-        //             <div className="payment__items">
-        //                 {basket?.map((item,i) => {
-
-        //                     return (
-                            
-        //                     <CartItem key={i} id={i}
-        //                      itemId={item.itemId} title={item.title} image={item.image} price={item.price} rating={item.rating}/>
-                             
-        //                 )})
-        //                 }
-        //             </div>
-        //         </div>           
-        //     </div>            
-        // </div>
+       
     )
 }
 

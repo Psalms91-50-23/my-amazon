@@ -18,11 +18,11 @@ const basketReducer = (state = initialState, action) => {
 
             if(!action.item.quantity)
             {
-                const tempVar = {...action.item, quantity: 1, total: Number(action.item.price)}
+                const tempItem = {...action.item, quantity: 1, total: Number(action.item.price)}
 
                 return {
                     ...state,
-                    basket: [...state.basket, tempVar]
+                    basket: [...state.basket, tempItem]
                  }
             }
             else{

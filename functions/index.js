@@ -29,10 +29,9 @@ app.get("/",(req,res) => {
 
 app.post("/payment/create", async (req,res) => {
 
-    //in payments component   url: `/payments/create?total=${totalPrice}`
+    //in payments component   url: `/payments/create?total=${totalPrice*100}`
     const total = Number(req.query.total)
 
-    // console.log("Payment Request Recieved amount is >>> ", total)
     //the amount cant be decimals, it is x100 in payment.js from client side, it receives in cents
     const paymentIntent = await stripe.paymentIntents.create({
         amount: total, //subunits of currency

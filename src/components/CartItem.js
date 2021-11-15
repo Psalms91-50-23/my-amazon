@@ -72,8 +72,9 @@ const CartItem = (props) => {
                 <img src={image} alt="" className="cartItem__image" />
             </div>
             <div className="cartItem__info">
-                 <p>{title}</p>
+                 
                 <div className="cartItem__price__quantity">
+                    <p>{title}</p>
                     <strong>Sale price: $ {price.toFixed(2)}</strong>
                     
                     {pathname !== "/orders" ?
