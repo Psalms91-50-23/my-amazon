@@ -12,10 +12,14 @@ const stripe = require('stripe')(process.env.REACT_APP_API)
 const app = express()
 
 //Middlewares
-
-app.use(cors({origin: "https://khos-17ce8.web.app" })) //live for deployment
+var corsOptions = {
+    origin: ["https://khos-17ce8.web.app","http://localhost:3000","https://khos-17ce8.firebaseapp.com"],
+    optionsSuccessStatus: 200 // For legacy browser support
+}
+    
+app.use(cors(corsOptions));
+// app.use(cors({origin: "https://khos-17ce8.web.app" })) //live for deployment
 // app.use(cors({origin: "http://localhost:3000"})) //for local testing
-
 app.use(express.json())
 
 //API routes

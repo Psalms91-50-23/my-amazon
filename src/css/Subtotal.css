@@ -32,7 +32,8 @@
 .subtotal > div > button:active {
 
     background-color: #d09b15;
-    /* width: 95%;     */
+    width: 95%;    
+    transform: translateX(2.5%);
 
 }
 

@@ -33,17 +33,49 @@
 
 }
 
-.payment__title {
+/* .payment__title {
 
     /* margin: 0 10px; */
-    flex: 0.2;
+    /* flex: 0.2;
 
-}
+}  */
 
-.payment__address, .payment__items, .payment__details {
+/* .payment__address, .payment__items, .payment__details {
 
     /* padding: 0 10px; */
     /* height: 100%; */
-    flex: 0.8;
+    /* flex: 0.8;
+
+} */ 
+
+.payment__details > form > div > button > span > p {
+
+    margin: 0;
+    padding: 0;
+ 
+}
+
+.payment__details > form > div > button {
+
+    /* display: flex; */
+    background: #f0c14b;
+    border-radius: 2px;
+    width: 100%;
+    height: 30px;
+    border: 1px solid;
+    font-weight: bolder;
+    margin-top: 10px;
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+    cursor: pointer;
+    /* text-align: center; */
+    /* justify-content: center; */
+}
+
+.payment__details > form > div > button:active {
+
+    width: 95%;
+    background-color: #d09b15;
+    transform: translateX(2.5%);
 
 }

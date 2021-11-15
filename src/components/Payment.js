@@ -133,8 +133,8 @@ const Payment = () => {
                      <div className="payment__address">
                          <h3>Payment Address</h3>
                          <p>{user?.email}</p>
-                         <p>123 Random st</p>
-                         <p>Los Angeles, CA</p>
+                         <p>123 Random St</p>
+                         <p>Random, Auckland</p>
                      </div>
                  </div>                 
                 <div className="payment__section">
@@ -181,7 +181,7 @@ const Payment = () => {
                                     thousandSeparator={true}
                                     prefix={"$NZD "} 
                                 />
-                                <button disabled={ processing || disabled || succeeded } >
+                                <button disabled={ processing || disabled || succeeded } > 
                                     <span>{processing? <p>Processing</p> : "Buy now"}</span>
                                 </button>
                             </div>

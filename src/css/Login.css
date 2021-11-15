@@ -73,6 +73,14 @@
 
 }
 
+.login__signInButton:active {
+
+    background-color: #d09b15;
+    width: 95%;    
+    transform: translateX(2.5%);
+
+}
+
 .login__registerButton {
 
     border-radius: 2px;
@@ -81,5 +89,14 @@
     border: 1px solid;
     margin-top: 10px;
     border-color: darkgray;
+    cursor: pointer;
+
+}
+
+.login__registerButton:active {
+
+    background-color: #d09b15;
+    width: 95%;    
+    transform: translateX(2.5%);
 
 }

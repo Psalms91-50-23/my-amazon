@@ -101,6 +101,22 @@
     
 }
 
+
+.form__button {
+
+    background-color: #f0c14b;
+    cursor: pointer;
+    width: 40px;
+    margin-left: 10px;
+
+}
+
+.form__button:active {
+
+    background-color: #d09b15;
+
+}
+
 @media only screen and (max-width: 900px){
     
     .cartItem{
