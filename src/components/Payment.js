@@ -117,7 +117,7 @@ const Payment = () => {
             .collection("orders") //orders table
             .doc(paymentIntent.id) 
             .set({
-                basket: currentBasket,
+                basket: basket,
                 amount: paymentIntent.amount, //comes back from stripe
                 created: paymentIntent.created 
             })
