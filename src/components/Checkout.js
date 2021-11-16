@@ -32,7 +32,14 @@ const Checkout = () => {
 
                             return (
 
-                                <CartItem key={`${i}_${item.itemId}`} id={i} title={item.title} image={item.image} price={item.price} rating={item.rating} total={item.total}/>
+                                <CartItem 
+                                    key={`${i}_${item.itemId}`} 
+                                    id={i} title={item.title} 
+                                    image={item.image} 
+                                    price={item.price}
+                                    rating={item.rating} 
+                                    total={item.total}
+                                 />
 
                             )
 

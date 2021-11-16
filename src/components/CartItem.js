@@ -10,9 +10,7 @@ const CartItem = (props) => {
     const basket = useSelector(state => state.cart.basket)
     const history = useHistory()
     const { pathname } = history.location
-    
     const [ itemQuantity, setItemQuanity ] = useState(1)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,8 +18,8 @@ const CartItem = (props) => {
         //onComponentDidMount meaning at creation, i gave this cartItem an id passed in from props, 
         //will be used for removing from basket
         dispatch(setIdAction(id))
-   
-    },[])
+    
+    },[id,dispatch])
 
 
     useEffect(() => {
@@ -34,22 +32,24 @@ const CartItem = (props) => {
            {
 
                 setItemQuanity(1)
+                return null
 
             }else if(item.id === id && item.quantity > 0 ){
 
                 setItemQuanity(item.quantity)
-
+                return null
             }
+            return null
             
         })        
         
 
-    },[basket])
+    },[basket,id])
 
     const onChangeSetQuanity = (e) => {
-    
+        
         setItemQuanity(e.target.value)
-         
+       
     }
 
     const removeFromBasket = () =>  {

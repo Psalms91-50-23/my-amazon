@@ -17,22 +17,31 @@ const Subtotal = () => {
 
         if(basket.length)
         {
+            const  getTotalPrice = (cart) => {
+
+                const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
+                const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
+                dispatch(setTotalPrice(totalPrice))
+                return totalPrice
+            
+            }
+
             setTotal(getTotalPrice(basket))
         }
         else{
             setTotal(0)
         }
 
-    },[basket])
+    },[basket,dispatch])
 
-    function getTotalPrice(cart){
+    // function getTotalPrice(cart){
 
-        const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
-        const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        dispatch(setTotalPrice(totalPrice))
-        return totalPrice
+    //     const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
+    //     const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
+    //     dispatch(setTotalPrice(totalPrice))
+    //     return totalPrice
     
-    }
+    // }
 
     function goCheckout(){
 

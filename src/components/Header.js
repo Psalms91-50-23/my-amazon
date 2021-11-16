@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import '../css/Header.css'
-// import SearchIcon from '@mui/icons-material/Search';
-// import { SearchIcon } from '@mui/icons-material'
-// import SearchIcon  from '@material-ui/core/SvgIcon';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { auth } from "../firebase"
-
-// import { ShoppingBasketIcon } from '@material-ui/icons';
 
 const Header = () => {
 

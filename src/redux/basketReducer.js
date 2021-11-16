@@ -16,25 +16,13 @@ const basketReducer = (state = initialState, action) => {
 
         case ADD_TO_BASKET:
 
-            if(!action.item.quantity)
-            {
                 const tempItem = {...action.item, quantity: 1, total: Number(action.item.price)}
 
                 return {
                     ...state,
                     basket: [...state.basket, tempItem]
                  }
-            }
-            else{
-
-                return {
-
-                    ...state,
-                    basket: [...state.basket, action.item]
-
-                 }
-
-            }
+   
           
         case REMOVE_FROM_CART:
 
@@ -46,15 +34,17 @@ const basketReducer = (state = initialState, action) => {
             }
 
         case SET_QUANTITY:
-            // console.log("state in action ",state.basket)
+
             return {
 
                 ...state,
                 basket: state.basket.map((item,index) => {
 
+                    
                     if(index === action.id)
                     {
-                        return {...item, quantity: Number(action.quantity), total: Number(action.quantity * item.price)}
+                        const itemTotal = Number(action.quantity)? Number(action.quantity*item.price) : Number(item.price)
+                        return {...item, quantity: Number(action.quantity), total: itemTotal}
                     }
                     else{
                         return item

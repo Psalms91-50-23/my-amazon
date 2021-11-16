@@ -9,7 +9,7 @@ const Product = ({ itemId, title, image, price, rating, dispatch }) => {
 
     const addToBasket = () => {
 
-        dispatch(addToCartAction( itemId, title,price, image, rating))
+        dispatch(addToCartAction( itemId, title, price, image, rating))
 
     }
 

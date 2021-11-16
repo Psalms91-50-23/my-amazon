@@ -19,22 +19,57 @@ const Payment = () => {
     const elements =  useElements()
     const dispatch = useDispatch() 
     const history = useHistory()
-
     const [ error, setError ] = useState(null)
     const [ disabled, setDisabled ] = useState(true)
     const [ succeeded, setSucceeded ] = useState(false)
     const [ processing, setProcessing ] = useState("")
-    // const [ currentTotal, setCurrentTotal ] = useState(0)
+    const [ currentBasket, setCurrentBasket ] = useState([])
     const [ clientSecret, setClientSecret ] = useState(true)
 
-
+ 
     useEffect(() => {
 
 
         if(basket.length)
         {
+            
+            const seTotalPrice = (cart) => {
+            
+                const totalPriceArray = cart.map((item) => {
+                    
+                    if(!item.quantity)
+                    {
 
-            seTotalPrice(basket)
+                        return item.price
+
+                    }else
+                    {
+                        
+                        return item.price*item.quantity
+
+                    }
+
+                }) 
+                const currentTotal = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
+                dispatch(setTotalPrice(currentTotal.toFixed(2)))
+            
+            }
+            //this checks if input is 0 then changes it to 1 as the item is in payment
+           const basketItems = basket.map(item => {
+
+                if(!item.quantity)
+                {
+                    item.quantity = 1
+                    return item
+                }
+                else {
+                    return item
+                }
+
+            })
+
+            setCurrentBasket(basketItems)
+            seTotalPrice(basketItems)
             const getClientSecret = async () => {
 
                 const response = await axios({
@@ -56,7 +91,7 @@ const Payment = () => {
             // history.push("/")
         }
 
-    },[basket])
+    },[basket,dispatch,totalPrice])
 
     // console.log("client secret ", clientSecret);
 
@@ -66,7 +101,7 @@ const Payment = () => {
         setProcessing(true)
 
         //client secret is how much Stripe knows how much to charge user
-        const payload = await stripe.confirmCardPayment(clientSecret, {
+         await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: elements.getElement(CardElement)
             }
@@ -82,7 +117,7 @@ const Payment = () => {
             .collection("orders") //orders table
             .doc(paymentIntent.id) 
             .set({
-                basket: basket,
+                basket: currentBasket,
                 amount: paymentIntent.amount, //comes back from stripe
                 created: paymentIntent.created 
             })
@@ -97,7 +132,6 @@ const Payment = () => {
 
         }).catch(error => console.error(error.message))
 
-    
     }
 
     const handleChange = e => {
@@ -108,13 +142,13 @@ const Payment = () => {
     }
 
 
-    function seTotalPrice(cart){
+    // function seTotalPrice(cart){
     
-        const totalPriceArray = cart.map((item) => item.price*item.quantity) 
-        const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-        dispatch(setTotalPrice(totalPrice.toFixed(2)))
+    //     const totalPriceArray = cart.map((item) => item.price*item.quantity) 
+    //     const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
+    //     dispatch(setTotalPrice(totalPrice.toFixed(2)))
     
-    }
+    // }
 
     return (
 
@@ -140,9 +174,9 @@ const Payment = () => {
                      <div className="payment__title">   
                          <h3>Review Items and delivery</h3>           
                      </div>
-                     {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
+                     {!currentBasket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
                         <div className="payment__items">
-                         {basket?.map((item,i) => {
+                         {currentBasket?.map((item,i) => {
 
                             return (
                             
