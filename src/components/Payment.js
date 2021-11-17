@@ -23,7 +23,7 @@ const Payment = () => {
     const [ disabled, setDisabled ] = useState(true)
     const [ succeeded, setSucceeded ] = useState(false)
     const [ processing, setProcessing ] = useState("")
-    const [ currentBasket, setCurrentBasket ] = useState([])
+    // const [ currentBasket, setCurrentBasket ] = useState([])
     const [ clientSecret, setClientSecret ] = useState(true)
 
  
@@ -55,21 +55,21 @@ const Payment = () => {
             
             }
             //this checks if input is 0 then changes it to 1 as the item is in payment
-           const basketItems = basket.map(item => {
+        //    const basketItems = basket.map(item => {
 
-                if(!item.quantity)
-                {
-                    item.quantity = 1
-                    return item
-                }
-                else {
-                    return item
-                }
+        //         if(!item.quantity)
+        //         {
+        //             item.quantity = 1
+        //             return item
+        //         }
+        //         else {
+        //             return item
+        //         }
 
-            })
+        //     })
 
-            setCurrentBasket(basketItems)
-            seTotalPrice(basketItems)
+        //     setCurrentBasket(basketItems)
+            seTotalPrice(basket)
             const getClientSecret = async () => {
 
                 const response = await axios({
@@ -93,7 +93,7 @@ const Payment = () => {
 
     },[basket,dispatch,totalPrice])
 
-    // console.log("client secret ", clientSecret);
+    console.log("client secret ", clientSecret);
 
     const handleSubmit = async e => {
 
@@ -109,7 +109,7 @@ const Payment = () => {
             //comes back with response but we destructuring
             //paymentIntent (is what Stripe calls it) = payment confirmation
             const { paymentIntent } = response
-            // console.log("response ", response);
+            console.log("response ", response);
 
             db
             .collection("users")//nosql data structure, users table
@@ -119,7 +119,7 @@ const Payment = () => {
             .set({
                 basket: basket,
                 amount: paymentIntent.amount, //comes back from stripe
-                created: paymentIntent.created 
+                created: paymentIntent.created //timestamp made
             })
 
             setSucceeded(true)
@@ -174,9 +174,9 @@ const Payment = () => {
                      <div className="payment__title">   
                          <h3>Review Items and delivery</h3>           
                      </div>
-                     {!currentBasket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
+                     {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
                         <div className="payment__items">
-                         {currentBasket?.map((item,i) => {
+                         {basket?.map((item,i) => {
 
                             return (
                             

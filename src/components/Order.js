@@ -10,7 +10,7 @@ const Order = ({ order }) => {
 
     return (
         <div className="order">
-            <h2>Order</h2>
+            <h2>Order ID no. {order.id}</h2>
             <p className="order__id">Order Time: {moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}
             </p>
             {order.data.basket?.map((item, i) => {
