@@ -22,12 +22,14 @@ const Orders = () => {
         if(user)
         {
             db
-            .collection("users")
+            .collection("users")//enter in users table
             .doc(user?.uid) //go into the document on user
-            .collection("orders")
+            .collection("orders")//enter orders table
             .orderBy("created","desc") //we already pushed in a created field, in paymetn.js
             .onSnapshot(snapshot => {
             //.docs means returning it as documents
+            console.log("snapshot ",snapshot)
+                //docs from orders table
                 setOrders(snapshot.docs.map(doc => ({
                     id: doc.id,
                     data: doc.data()

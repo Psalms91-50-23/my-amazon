@@ -7,6 +7,7 @@ import CurrencyFormat from 'react-currency-format'
 const Order = ({ order }) => {
 
     // id, itemId, image, title, price, rating
+    console.log('order in order.js ',order)
 
     return (
         <div className="order">

@@ -6,7 +6,6 @@ import { addToCartAction } from '../actions/basketAction'
 
 const Product = ({ itemId, title, image, price, rating, dispatch }) => {
 
-
     const addToBasket = () => {
 
         dispatch(addToCartAction( itemId, title, price, image, rating))
@@ -15,7 +14,7 @@ const Product = ({ itemId, title, image, price, rating, dispatch }) => {
 
     return (
 
-        <div className="product">
+        <div className="product" >
             <div className="product__info">
                 <p>{title}</p>
                 <p className="product__price">

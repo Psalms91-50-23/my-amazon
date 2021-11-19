@@ -38,7 +38,7 @@ app.post("/payment/create", async (req,res) => {
         currency: "nzd",
     })
 
-    // console.log("paymentIntent  ",paymentIntent)
+    console.log("paymentIntent  ",paymentIntent)
     // OK - created
     res.status(201).send({
         clientSecret: paymentIntent.client_secret,

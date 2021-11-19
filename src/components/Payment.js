@@ -93,7 +93,7 @@ const Payment = () => {
 
     },[basket,dispatch,totalPrice])
 
-    console.log("client secret ", clientSecret);
+    // console.log("client secret ", clientSecret);
 
     const handleSubmit = async e => {
 
@@ -109,7 +109,7 @@ const Payment = () => {
             //comes back with response but we destructuring
             //paymentIntent (is what Stripe calls it) = payment confirmation
             const { paymentIntent } = response
-            console.log("response ", response);
+            // console.log("response ", response);
 
             db
             .collection("users")//nosql data structure, users table
