@@ -209,7 +209,7 @@ const Payment = () => {
                                         return (<h3 className="order__total">Payment Total: {value}</h3>)
                                     }}
                                     decimalScale={2}
-                                    value={totalPrice? totalPrice : 0}
+                                    value={totalPrice? totalPrice : 0.00}
                                     displayType={"text"}
                                     thousandSeparator={true}
                                     prefix={"$NZD "} 
