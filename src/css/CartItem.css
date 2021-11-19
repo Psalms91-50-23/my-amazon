@@ -19,6 +19,14 @@
     justify-content: flex-start;
     /* width: 50%; */
     height: auto;
+    overflow: hidden;
+
+}
+
+.cartItem__image__container > img:hover {
+
+    transition: all 700ms ease-in-out;
+    transform: scale(1.2);
 
 }
 
