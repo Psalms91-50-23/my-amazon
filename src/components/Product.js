@@ -16,7 +16,7 @@ const Product = ({ itemId, title, image, price, rating, dispatch }) => {
 
         <div className="product" >
             <div className="product__info">
-                <p>{title}</p>
+                <h4>{title}</h4>
                 <p className="product__price">
                     <strong>$ {price.toFixed(2)}</strong>
                 </p>

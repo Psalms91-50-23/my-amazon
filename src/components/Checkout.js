@@ -25,7 +25,6 @@ const Checkout = () => {
                         basket.length ? <NavLink to="/"><ArrowBackIcon />Shop</NavLink> : ""
                     }
                 </div>
-
                 <div className="cart__item">
                     {basket.length ?
                         (basket?.map((item, i) => {
