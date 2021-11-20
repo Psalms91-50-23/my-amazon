@@ -37,27 +37,43 @@
 
 }
 
-@media only screen and (max-width: 2000px){
+@media only screen and (max-width: 768px){
 
     .subtotal {
 
-        max-width: 300px;
-      
+        height: 150px;
+
     }
 
 }
 
-
-@media only screen and (min-width: 2001px){
+@media only screen and (max-width: 629px){
 
     .subtotal {
 
-        max-width: 300px;
-      
+        height: 150px;
+        width: 86vw;
+
     }
 
-    .subtotal > div > button {
-        width: auto;
+}
+
+@media only screen and (max-width: 500px){
+
+    .subtotal {
+
+       width: 80vw;
+
+    }
+
+}
+
+@media only screen and (max-width: 370px){
+
+    .subtotal {
+
+       width: 95%;
+
     }
 
 }

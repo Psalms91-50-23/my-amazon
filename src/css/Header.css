@@ -10,7 +10,8 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    min-width: 280px;
+    min-width: 100vw;
+    height: auto;
 
 }
 
@@ -130,8 +131,8 @@
 
         display: flex;
         flex-direction: rows;
-        width: 100%;
-
+        /* width: 100%; */
+        width: 100vw;
     }
 }
 
@@ -148,8 +149,9 @@
 
         display: flex;
         flex-direction: column;
-        width: 100%;
-        height: 165px;
+        /* width: 100%; */
+        /* height: 165px; */
+        width: 100vw;
 
     }
 
@@ -178,8 +180,9 @@
 
         display: flex;
         flex-direction: column;
-        width: 100%;
-        height: 190px;
+        /* width: 100%; */
+        width: 100vw;
+        /* height: 190px; */
 
     }
 
@@ -208,7 +211,8 @@
 
         display: flex;
         flex-direction: column;
-        width: 100%;
+        /* width: 100%; */
+        width: 100vw;
 
     }
 
@@ -239,7 +243,9 @@
         max-height: auto;
         display: flex;
         flex-direction: column;
-        width: 100%;
+        /* width: 100%; */
+        min-width: 200px;
+        /* width: 100vw; */
 
     }
 

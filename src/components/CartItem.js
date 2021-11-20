@@ -74,8 +74,8 @@ const CartItem = (props) => {
             <div className="cartItem__info">
                  
                 <div className="cartItem__price__quantity">
-                    <p>{title}</p>
-                    <strong>Sale price: $ {price.toFixed(2)}</strong>
+                    <h4>{title}</h4>
+                    <strong className="cartItem__sale_price">Sale price: $ {price.toFixed(2)}</strong>
                     
                     {pathname !== "/orders" ?
                     (
