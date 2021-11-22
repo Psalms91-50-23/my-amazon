@@ -32,11 +32,12 @@ function App() {
                     // const userProfile = {...authUser, displayName: profileName }
                     dispatch(setUser(authUser))
                  
-                }else if(authUser){
-                             
-                    dispatch(setUser(authUser))
-
                 }
+                // else if(authUser){
+                             
+                //     dispatch(setUser(authUser))
+
+                // }
                 else{
 
                     dispatch(setUser(null))
