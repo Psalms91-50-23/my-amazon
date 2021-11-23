@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch  } from 'react-redux'
 import CartItem from './CartItem'
 import "../css/Payment.css"
-import "../css/Checkout.css"
 import { NavLink, useHistory } from 'react-router-dom'
 import { CardElement,  useElements, useStripe } from '@stripe/react-stripe-js'
 import CurrencyFormat from 'react-currency-format';
