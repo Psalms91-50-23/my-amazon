@@ -22,13 +22,11 @@ function App() {
     const dispatch = useDispatch()
     const [ userLocationDetails, setUserLocationDetails ] = useState({
         latitude: null,
-        longitude: null,
-        userCityCountry: null
+        longitude: null
     })
 
     useEffect(() => {
 
-       
         const handleError = (error) => {
 
             switch(error.code) {
@@ -47,6 +45,7 @@ function App() {
             default:
                 alert("error code: ",error.code)
             }
+
         }
         
         const getCoords = (position) => {
@@ -55,32 +54,30 @@ function App() {
             // console.log("lat ",latitude, " longitude ", longitude);
             if(latitude && longitude)
             {
-                setUserLocationDetails({ ...userLocationDetails, latitude, longitude })
+                setUserLocationDetails({ latitude, longitude })
                 // console.log("user location state ", userLocationDetails);
             }
-            
-            
+                      
         }
         
         const getGeoLocation =  ()=> {
             
             if (navigator.geolocation) {
                 // console.log("geolocation Object ", navigator)
-                navigator.geolocation.getCurrentPosition(getCoords,handleError);
+                navigator.geolocation.getCurrentPosition(getCoords,handleError)
                 } else {
-                console.error("Geolocation is not supported by this browser.");
+                console.error("Geolocation is not supported by this browser.")
                 }
         }
         
         getGeoLocation()
-        const { latitude, longitude, userCityCountry } = userLocationDetails
+        // const { latitude, longitude } = userLocationDetails
         Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
-        if(latitude)
+        if(userLocationDetails.latitude)
         {
-            Geocode.fromLatLng(latitude, longitude).then((response) => {
+            Geocode.fromLatLng(userLocationDetails.latitude, userLocationDetails.longitude).then((response) => {
                     // console.log("res ",response);
                     const cityCountry = response.results[9].formatted_address
-                    setUserLocationDetails({ ...userLocationDetails, userCityCountry: cityCountry })
                     dispatch(setGeoLocation(cityCountry))
                     // console.log("city and country ", cityCountry)
                 },
@@ -93,7 +90,7 @@ function App() {
                 });
         }     
 
-    },[userLocationDetails.latitude, userLocationDetails.userCityCountry])
+    },[userLocationDetails.latitude, dispatch, userLocationDetails.longitude])
 
     useEffect(() => {
 
