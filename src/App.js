@@ -20,7 +20,7 @@ function App() {
 
     // const { user, basket, profileName } = useSelector(state => state.cart)
     const dispatch = useDispatch()
-    const [ userLocationDetails, setUserLocationDetails ] = useState({
+    const [ userCoorindates, setUserCoordinates ] = useState({
         latitude: null,
         longitude: null
     })
@@ -54,7 +54,7 @@ function App() {
             // console.log("lat ",latitude, " longitude ", longitude);
             if(latitude && longitude)
             {
-                setUserLocationDetails({ latitude, longitude })
+                setUserCoordinates({ latitude, longitude })
                 // console.log("user location state ", userLocationDetails);
             }
                       
@@ -73,9 +73,9 @@ function App() {
         getGeoLocation()
         // const { latitude, longitude } = userLocationDetails
         Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
-        if(userLocationDetails.latitude)
+        if(userCoorindates.latitude)
         {
-            Geocode.fromLatLng(userLocationDetails.latitude, userLocationDetails.longitude).then((response) => {
+            Geocode.fromLatLng(userCoorindates.latitude, userCoorindates.longitude).then((response) => {
                     // console.log("res ",response);
                     const cityCountry = response.results[9].formatted_address
                     dispatch(setGeoLocation(cityCountry))
@@ -90,7 +90,7 @@ function App() {
                 });
         }     
 
-    },[userLocationDetails.latitude, dispatch, userLocationDetails.longitude])
+    },[userCoorindates.latitude, dispatch, userCoorindates.longitude])
 
     useEffect(() => {
 

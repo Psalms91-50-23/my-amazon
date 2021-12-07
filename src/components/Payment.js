@@ -13,7 +13,7 @@ import StoreIcon from '@mui/icons-material/Store';
 const Payment = () => {
 
 
-    const { basket, user, totalPrice } = useSelector(state => state.cart)
+    const { basket, user, totalPrice, userGeoLocation } = useSelector(state => state.cart)
     const stripe = useStripe()
     const elements =  useElements()
     const dispatch = useDispatch() 
@@ -166,7 +166,7 @@ const Payment = () => {
                          <h3>Payment Address</h3>
                          <p>{user?.email}</p>
                          <p>123 Random St</p>
-                         <p>Random, Auckland</p>
+                         <p>{userGeoLocation[0]}, {userGeoLocation[1]}</p>
                      </div>
                  </div>                 
                 <div className="payment__section">
