@@ -25,11 +25,16 @@
  
 }
 
+.cartItem__image__container > img {
+    transition: all 1s ease-in-out;
+    transition-property: transform;
+
+}
 
 .cartItem__image__container > img:hover {
 
-    transition: all 1s ease-in-out;
-    transition-property: transform;
+    /* transition: all 1s ease-in-out;
+    transition-property: transform; */
     transform: scale(1.3);
 
 }

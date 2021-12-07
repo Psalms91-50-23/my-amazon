@@ -8,16 +8,27 @@ import { auth } from "../firebase"
 
 const Header = () => {
 
-    const { basket, user } = useSelector(state => state.cart)
+    const { basket, user, userGeoLocation } = useSelector(state => state.cart)
     const [ basketLength, setBasketLenth ] = useState(basket.length)
- 
-
-    useEffect(() => {
+    const [ geoLocation, setGeolocation ] = useState("")
+  
+    useEffect(() => 
 
         setBasketLenth(basket.length)
         // console.log('user ',user)
 
-    },[basket])
+    ,[basket])
+
+    useEffect(() => {
+    
+        if(userGeoLocation)
+        {
+            setGeolocation(userGeoLocation)
+            // console.log("geo location ", geoLocation);   
+        }
+  
+            
+    },[userGeoLocation])
 
     const handleAuthentication = () => {
 
@@ -40,6 +51,22 @@ const Header = () => {
                     alt=""
                 />
             </NavLink>
+            { geoLocation ? 
+               ( 
+                   
+                <div className="header__geoLocation">
+                    {/* <p>{geoLocation}</p> */}
+                    <span className="header__geoLocation__text">
+                        {geoLocation[0]}
+                    </span>
+                    <span className="header__geoLocation__text">
+                        {geoLocation[1]}
+                    </span>           
+                </div>
+                )
+                :
+                ""
+            }
              <div className="header__search">
                  <input 
                     className="header__searchInput"  

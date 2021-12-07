@@ -22,6 +22,12 @@ app.use(cors(corsOptions));
 // app.use(cors({origin: "http://localhost:3000"})) //for local testing
 app.use(express.json())
 
+// app.use((req,res,next) => {
+//     res.header("Access-Control-Allow-Origin", corsOptions)
+//     res.header("Access-Control-Allow-Headers", "Origin,, X-Requested-With, Content-Type, Accept")
+//     next()
+
+// })
 //API routes
 app.get("/",(req,res) => {
     res.status(200).send("hello world")

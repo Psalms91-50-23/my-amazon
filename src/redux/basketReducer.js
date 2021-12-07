@@ -1,12 +1,13 @@
 
-import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_TOTAL_PRICE, EMPTY_BASKET } from '../actions/basketAction'
+import { ADD_TO_BASKET, REMOVE_FROM_CART, SET_QUANTITY, SET_ID, SET_USER, SET_PROFILE_NAME, SET_TOTAL_PRICE, EMPTY_BASKET, SET_GEOLOCATION } from '../actions/basketAction'
 
 const initialState = {
 
     basket: [],
     user: null,
     profileName: null,
-    totalPrice: null
+    totalPrice: null,
+    userGeoLocation: null
 
 }
 
@@ -104,6 +105,17 @@ const basketReducer = (state = initialState, action) => {
                 basket: []
 
             }
+        case SET_GEOLOCATION:
+
+            const location = action.geoLocation.split(", ")
+            // console.log("location in reducer ", location)
+            return {
+
+                ...state,
+                userGeoLocation: location
+
+            }
+            
         default:
             return state
 

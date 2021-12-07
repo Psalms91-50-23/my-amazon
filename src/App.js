@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from './actions/basketAction';
+import { setUser, setGeoLocation } from './actions/basketAction';
 import './App.css';
 import Header from '../src/components/Header';
 import Home from '../src/components/Home';
@@ -12,6 +12,7 @@ import { auth } from "./firebase"
 import Payment from './components/Payment';
 import { loadStripe } from "@stripe/stripe-js"
 import { Elements } from '@stripe/react-stripe-js';
+import Geocode from "react-geocode";
 require('dotenv').config()
 const promise = loadStripe("pk_test_51JrBJFCeBeR4kdgii1X8OghJOo35vuMSHLEltHE7BrR5NltaIFOiTUp5aUSXT7K0OKv8gqJiJyTL6Dy6ZbPRrkg100w3dzmjVd")
 
@@ -19,7 +20,81 @@ function App() {
 
     // const { user, basket, profileName } = useSelector(state => state.cart)
     const dispatch = useDispatch()
+    const [ userLocationDetails, setUserLocationDetails ] = useState({
+        latitude: null,
+        longitude: null,
+        userCityCountry: null
+    })
 
+    useEffect(() => {
+
+       
+            const handleError = (error) => {
+    
+                switch(error.code) {
+                case error.PERMISSION_DENIED:
+                   alert("User denied the request for Geolocation.")
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                   alert( "Location information is unavailable.")
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.")
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.")
+                    break;
+                }
+            }
+        
+            const getCoords = (position) => {
+                // console.log("position ", position.coords);
+                const { latitude, longitude } = position.coords
+                // console.log("lat ",latitude, " longitude ", longitude);
+                if(latitude && longitude)
+                {
+                    setUserLocationDetails({ ...userLocationDetails, latitude, longitude })
+                    // console.log("user location state ", userLocationDetails);
+                }
+               
+               
+            }
+        
+            const getGeoLocation =  ()=> {
+                
+                if (navigator.geolocation) {
+                    // console.log("geolocation Object ", navigator)
+                    navigator.geolocation.getCurrentPosition(getCoords,handleError);
+                  } else {
+                    console.error("Geolocation is not supported by this browser.");
+                  }
+            }
+        
+            getGeoLocation()
+            const { latitude, longitude, userCityCountry } = userLocationDetails
+            Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+            if(latitude)
+            {
+                Geocode.fromLatLng(latitude, longitude).then((response) => {
+                        // console.log("res ",response);
+                        const cityCountry = response.results[9].formatted_address
+                        setUserLocationDetails({ ...userLocationDetails, userCityCountry: cityCountry })
+    
+                        dispatch(setGeoLocation(cityCountry))
+                        // console.log("city and country ", cityCountry)
+                        // const address = response.results[0].formatted_address;
+                        // console.log("address ",address);
+                    },
+                    (error) => {
+                        console.error(error);
+                    }
+    
+                  ).catch(error => {
+                        console.error(error);
+                  });
+            }     
+
+    },[userLocationDetails.latitude, userLocationDetails.userCityCountry])
 
     useEffect(() => {
 
@@ -42,6 +117,9 @@ function App() {
             })
         
     },[dispatch])
+
+  
+    
 
   return (
       
