@@ -28,7 +28,7 @@ const Orders = () => {
             .orderBy("created","desc") //we already pushed in a created field, in paymetn.js
             .onSnapshot(snapshot => {
             //.docs means returning it as documents
-            console.log("snapshot ",snapshot)
+            // console.log("snapshot ",snapshot)
                 //docs from orders table
                 setOrders(snapshot.docs.map(doc => ({
                     id: doc.id,
@@ -46,13 +46,18 @@ const Orders = () => {
     // console.log("orders.js ", orders);
     return (
         <div className="orders">
-            <h1>Your Order History</h1>
-            <div className="orders__order">
-            { orders?.map((order,i) => {
-               return ( <Order key={i} order={order}/>)
-            })
-            }
-            </div>
+            {user? 
+            <>
+                <h2>Your Order History</h2>
+                <div className="orders__order">
+                { orders?.map((order,i) => {
+                return ( <Order key={i} order={order}/>)
+                })
+                }
+                </div>
+            </>
+            : 
+            <h2>Can only view History of orders if registered and logged in</h2>}    
         </div>
     )
 }

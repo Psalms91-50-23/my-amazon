@@ -56,6 +56,9 @@ const Header = () => {
                    
                 <div className="header__geoLocation">
                     {/* <p>{geoLocation}</p> */}
+                    <span className="header__geoLocation__deliver">
+                        Deliver to
+                    </span>
                     <span className="header__geoLocation__text">
                         {geoLocation[0]}
                     </span>
@@ -63,6 +66,7 @@ const Header = () => {
                         {geoLocation[1]}
                     </span>           
                 </div>
+                
                 )
                 :
                 ""
