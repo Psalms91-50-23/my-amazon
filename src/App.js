@@ -29,97 +29,94 @@ function App() {
     useEffect(() => {
 
        
-            const handleError = (error) => {
-    
-                switch(error.code) {
-                case error.PERMISSION_DENIED:
-                   alert("User denied the request for Geolocation.")
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                   alert( "Location information is unavailable.")
-                    break;
-                case error.TIMEOUT:
-                    alert("The request to get user location timed out.")
-                    break;
-                case error.UNKNOWN_ERROR:
-                    alert("An unknown error occurred.")
-                    break;
-                }
+        const handleError = (error) => {
+
+            switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.")
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert( "Location information is unavailable.")
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.")
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.")
+                break;
             }
+        }
         
-            const getCoords = (position) => {
-                // console.log("position ", position.coords);
-                const { latitude, longitude } = position.coords
-                // console.log("lat ",latitude, " longitude ", longitude);
-                if(latitude && longitude)
-                {
-                    setUserLocationDetails({ ...userLocationDetails, latitude, longitude })
-                    // console.log("user location state ", userLocationDetails);
-                }
-               
-               
-            }
-        
-            const getGeoLocation =  ()=> {
-                
-                if (navigator.geolocation) {
-                    // console.log("geolocation Object ", navigator)
-                    navigator.geolocation.getCurrentPosition(getCoords,handleError);
-                  } else {
-                    console.error("Geolocation is not supported by this browser.");
-                  }
-            }
-        
-            getGeoLocation()
-            const { latitude, longitude, userCityCountry } = userLocationDetails
-            Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
-            if(latitude)
+        const getCoords = (position) => {
+            // console.log("position ", position.coords);
+            const { latitude, longitude } = position.coords
+            // console.log("lat ",latitude, " longitude ", longitude);
+            if(latitude && longitude)
             {
-                Geocode.fromLatLng(latitude, longitude).then((response) => {
-                        // console.log("res ",response);
-                        const cityCountry = response.results[9].formatted_address
-                        setUserLocationDetails({ ...userLocationDetails, userCityCountry: cityCountry })
-    
-                        dispatch(setGeoLocation(cityCountry))
-                        // console.log("city and country ", cityCountry)
-                        // const address = response.results[0].formatted_address;
-                        // console.log("address ",address);
-                    },
-                    (error) => {
-                        console.error(error);
-                    }
-    
-                  ).catch(error => {
-                        console.error(error);
-                  });
-            }     
+                setUserLocationDetails({ ...userLocationDetails, latitude, longitude })
+                // console.log("user location state ", userLocationDetails);
+            }
+            
+            
+        }
+        
+        const getGeoLocation =  ()=> {
+            
+            if (navigator.geolocation) {
+                // console.log("geolocation Object ", navigator)
+                navigator.geolocation.getCurrentPosition(getCoords,handleError);
+                } else {
+                console.error("Geolocation is not supported by this browser.");
+                }
+        }
+        
+        getGeoLocation()
+        const { latitude, longitude, userCityCountry } = userLocationDetails
+        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+        if(latitude)
+        {
+            Geocode.fromLatLng(latitude, longitude).then((response) => {
+                    // console.log("res ",response);
+                    const cityCountry = response.results[9].formatted_address
+                    setUserLocationDetails({ ...userLocationDetails, userCityCountry: cityCountry })
+
+                    dispatch(setGeoLocation(cityCountry))
+                    // console.log("city and country ", cityCountry)
+                    // const address = response.results[0].formatted_address;
+                    // console.log("address ",address);
+                },
+                (error) => {
+                    console.error(error);
+                }
+
+                ).catch(error => {
+                    console.error(error);
+                });
+        }     
 
     },[userLocationDetails.latitude, userLocationDetails.userCityCountry])
 
     useEffect(() => {
 
-            auth.onAuthStateChanged((authUser) => {
+        auth.onAuthStateChanged((authUser) => {
+        
             
+            if(authUser)
+            {
                 
-                if(authUser)
-                {
-                    
-                    // const userProfile = {...authUser, displayName: profileName }
-                    dispatch(setUser(authUser))
-                 
-                }
-                else{
+                // const userProfile = {...authUser, displayName: profileName }
+                dispatch(setUser(authUser))
+                
+            }
+            else{
 
-                    dispatch(setUser(null))
+                dispatch(setUser(null))
 
-                }
-    
-            })
+            }
+
+        })
         
     },[dispatch])
-
-  
-    
 
   return (
       
