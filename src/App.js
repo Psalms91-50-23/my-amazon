@@ -44,6 +44,8 @@ function App() {
             case error.UNKNOWN_ERROR:
                 alert("An unknown error occurred.")
                 break;
+            default:
+                alert("error code: ",error.code)
             }
         }
         
@@ -79,11 +81,8 @@ function App() {
                     // console.log("res ",response);
                     const cityCountry = response.results[9].formatted_address
                     setUserLocationDetails({ ...userLocationDetails, userCityCountry: cityCountry })
-
                     dispatch(setGeoLocation(cityCountry))
                     // console.log("city and country ", cityCountry)
-                    // const address = response.results[0].formatted_address;
-                    // console.log("address ",address);
                 },
                 (error) => {
                     console.error(error);
