@@ -26,71 +26,10 @@ function App() {
     })
 
     useEffect(() => {
+   
+        getGeoCoordinates()   
 
-        const handleError = (error) => {
-
-            switch(error.code) {
-            case error.PERMISSION_DENIED:
-                alert("User denied the request for Geolocation.")
-                break;
-            case error.POSITION_UNAVAILABLE:
-                alert( "Location information is unavailable.")
-                break;
-            case error.TIMEOUT:
-                alert("The request to get user location timed out.")
-                break;
-            case error.UNKNOWN_ERROR:
-                alert("An unknown error occurred.")
-                break;
-            default:
-                alert("error code: ",error.code)
-            }
-
-        }
-        
-        const getCoords = (position) => {
-            // console.log("position ", position.coords);
-            const { latitude, longitude } = position.coords
-            // console.log("lat ",latitude, " longitude ", longitude);
-            if(latitude && longitude)
-            {
-                setUserCoordinates({ latitude, longitude })
-                // console.log("user location state ", userLocationDetails);
-            }
-                      
-        }
-        
-        const getGeoLocation =  ()=> {
-            
-            if (navigator.geolocation) {
-                // console.log("geolocation Object ", navigator)
-                navigator.geolocation.getCurrentPosition(getCoords,handleError)
-                } else {
-                console.error("Geolocation is not supported by this browser.")
-                }
-        }
-        
-        getGeoLocation()
-        // const { latitude, longitude } = userLocationDetails
-        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
-        if(userCoorindates.latitude)
-        {
-            Geocode.fromLatLng(userCoorindates.latitude, userCoorindates.longitude).then((response) => {
-                    // console.log("res ",response);
-                    const cityCountry = response.results[9].formatted_address
-                    dispatch(setGeoLocation(cityCountry))
-                    // console.log("city and country ", cityCountry)
-                },
-                (error) => {
-                    console.error(error);
-                }
-
-                ).catch(error => {
-                    console.error(error);
-                });
-        }     
-
-    },[userCoorindates.latitude, dispatch, userCoorindates.longitude])
+    },[userCoorindates.latitude])
 
     useEffect(() => {
 
@@ -100,7 +39,6 @@ function App() {
             if(authUser)
             {
                 
-                // const userProfile = {...authUser, displayName: profileName }
                 dispatch(setUser(authUser))
                 
             }
@@ -113,6 +51,78 @@ function App() {
         })
         
     },[dispatch])
+
+    function handleError(error){
+
+        switch(error.code) {
+        case error.PERMISSION_DENIED:
+            alert("User denied the request for Geolocation. You can turn it off to activate re-prompting of location")
+            break;
+        case error.POSITION_UNAVAILABLE:
+            alert( "Location information is unavailable.")
+            break;
+        case error.TIMEOUT:
+            alert("The request to get user location timed out.")
+            break;
+        case error.UNKNOWN_ERROR:
+            alert("An unknown error occurred.")
+            break;
+        default:
+            alert("error code: ",error.code)
+        }
+
+    }
+    
+    function getCoords(position){
+
+        const { latitude, longitude } = position.coords
+
+        if(latitude && longitude)
+        {
+
+            setUserCoordinates({ latitude, longitude })
+
+        }
+                  
+    }
+
+    
+    function getGeoLocation(){
+            
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(getCoords,handleError)
+
+            } else {
+
+            console.error("Geolocation is not supported by this browser.")
+
+            }
+    }
+
+    function getGeoCoordinates(){
+        
+        getGeoLocation()
+        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+        if(userCoorindates.latitude)
+        {
+            Geocode.fromLatLng(userCoorindates.latitude, userCoorindates.longitude).then((response) => {
+
+                    const cityCountry = response.results[9].formatted_address
+                    dispatch(setGeoLocation(cityCountry))
+                    
+                },
+                (error) => {
+                    console.error(error);
+                }
+
+                ).catch(error => {
+                    console.error(error);
+                });
+        }     
+        
+    }
+
 
   return (
       
@@ -127,7 +137,6 @@ function App() {
           </Route>
           <Route path="/orders" component={Orders}/>
           <Route path="/login" component={Login}/>
-         
       </div>
     
   );

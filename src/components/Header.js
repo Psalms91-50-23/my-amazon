@@ -59,10 +59,10 @@ const Header = () => {
                     <span className="header__geoLocation__deliver">
                         Deliver to
                     </span>
-                    <span className="header__geoLocation__text">
+                    <span className="header__geoLocation__city">
                         {geoLocation[0]}
                     </span>
-                    <span className="header__geoLocation__text">
+                    <span className="header__geoLocation__country">
                         {geoLocation[1]}
                     </span>           
                 </div>

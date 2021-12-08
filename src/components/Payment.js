@@ -166,12 +166,22 @@ const Payment = () => {
                          <h3>Payment Address</h3>
                          <p>{user?.email}</p>
                          <p>123 Random St</p>
-                         <p>{userGeoLocation[0]}, {userGeoLocation[1]}</p>
+                         {userGeoLocation?  
+                            <p>{userGeoLocation[0]}, {userGeoLocation[1]}</p>
+                            :
+                            <p>Auckland, New Zealand</p>
+                         }
+                        
                      </div>
                  </div>                 
                 <div className="payment__section">
-                     <div className="payment__title">   
-                         <h3>Review Items and delivery</h3>           
+                     <div className="payment__title"> 
+                     {basket.length ? 
+                     <h3>Review Items and delivery</h3>  
+                     :
+                     <h3>Nothing To Pay for</h3>     
+                     }  
+                               
                      </div>
                      {!basket.length && (<NavLink to={"/"}><StoreIcon/> Back To Shop </NavLink>)}
                         <div className="payment__items">
@@ -193,34 +203,39 @@ const Payment = () => {
                         )})
                         }
                     </div>
-                </div>  
-                <div className="payment__section">
-                    <div>
-                        <h3>Payment Method</h3>
-                    </div>
-                    <div className="payment__details">
-                        {/* stripe magic */}    
-                        <form onSubmit={handleSubmit}>
-                            <CardElement onChange={handleChange}/>
-                            <div className="payment__priceContainer">
-                                 <CurrencyFormat 
-                                    renderText={(value) => {
-                                        return (<h3 className="order__total">Payment Total: {value}</h3>)
-                                    }}
-                                    decimalScale={2}
-                                    value={totalPrice? totalPrice : 0.00}
-                                    displayType={"text"}
-                                    thousandSeparator={true}
-                                    prefix={"$NZD "} 
-                                />
-                                <button disabled={ processing || disabled || succeeded } > 
-                                    <span>{processing? <p>Processing</p> : "Buy now"}</span>
-                                </button>
-                            </div>
-                            {error && <div>{error}</div>}
-                        </form>
-                    </div>
-                </div>         
+                </div>
+                {basket.length ?
+                    (
+                    <div className="payment__section">
+                        <div>
+                            <h3>Payment Method</h3>
+                        </div>
+                        <div className="payment__details">
+                            {/* stripe magic */}    
+                            <form onSubmit={handleSubmit}>
+                                <CardElement onChange={handleChange}/>
+                                <div className="payment__priceContainer">
+                                    <CurrencyFormat 
+                                        renderText={(value) => {
+                                            return (<h3 className="order__total">Payment Total: {value}</h3>)
+                                        }}
+                                        decimalScale={2}
+                                        value={totalPrice? totalPrice : 0.00}
+                                        displayType={"text"}
+                                        thousandSeparator={true}
+                                        prefix={"$NZD "} 
+                                    />
+                                    <button disabled={ processing || disabled || succeeded } > 
+                                        <span>{processing? <p>Processing</p> : "Buy now"}</span>
+                                    </button>
+                                </div>
+                                {error && <div>{error}</div>}
+                            </form>
+                        </div>
+                    </div>)
+                :
+                ""   
+                }  
             </div>
         </div>
        
