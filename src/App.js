@@ -119,7 +119,9 @@ function App() {
             Geocode.fromLatLng(userCoorindates.latitude, userCoorindates.longitude).then((response) => {
 
                     const cityCountry = response.results[9].formatted_address
-                    dispatch(setGeoLocation(cityCountry))
+                    const address = response.results[0].formatted_address
+                    // console.log("results ", response.results[0].formatted_address)
+                    dispatch(setGeoLocation(cityCountry,address))
                     
                 },
                 (error) => {

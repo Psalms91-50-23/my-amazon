@@ -53,21 +53,7 @@ const Payment = () => {
                 dispatch(setTotalPrice(currentTotal.toFixed(2)))
             
             }
-            //this checks if input is 0 then changes it to 1 as the item is in payment
-        //    const basketItems = basket.map(item => {
 
-        //         if(!item.quantity)
-        //         {
-        //             item.quantity = 1
-        //             return item
-        //         }
-        //         else {
-        //             return item
-        //         }
-
-        //     })
-
-        //     setCurrentBasket(basketItems)
             seTotalPrice(basket)
             const getClientSecret = async () => {
 
@@ -140,15 +126,7 @@ const Payment = () => {
 
     }
 
-
-    // function seTotalPrice(cart){
-    
-    //     const totalPriceArray = cart.map((item) => item.price*item.quantity) 
-    //     const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-    //     dispatch(setTotalPrice(totalPrice.toFixed(2)))
-    
-    // }
-
+    // console.log("payment address ",userGeoLocation)
     return (
 
         <div className="payment">
@@ -165,11 +143,14 @@ const Payment = () => {
                      <div className="payment__address">
                          <h3>Payment Address</h3>
                          <p>{user?.email}</p>
-                         <p>123 Random St</p>
                          {userGeoLocation?  
-                            <p>{userGeoLocation[0]}, {userGeoLocation[1]}</p>
+                            <p>{userGeoLocation.address}</p>
+                            // <p>{userGeoLocation.location[0]}, {userGeoLocation.location[1]}</p>
                             :
-                            <p>Auckland, New Zealand</p>
+                            <>
+                                <p>123 Random St</p>
+                                <p>Auckland, New Zealand</p>
+                            </>
                          }
                         
                      </div>

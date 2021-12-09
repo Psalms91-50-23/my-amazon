@@ -83,12 +83,13 @@ export function setDisplayName(profileName){
     }
 }
 
-export function setGeoLocation(geoLocation){
+export function setGeoLocation(geoLocation, address){
 
     return {
 
         type: SET_GEOLOCATION,
-        geoLocation
+        geoLocation,
+        address
 
     }
 

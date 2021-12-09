@@ -34,15 +34,6 @@ const Subtotal = () => {
 
     },[basket,dispatch])
 
-    // function getTotalPrice(cart){
-
-    //     const totalPriceArray = cart.map((item) => item.quantity? item.price*item.quantity : item.price) 
-    //     const totalPrice = totalPriceArray?.reduce((currentTotal, currValue) => currentTotal+currValue)
-    //     dispatch(setTotalPrice(totalPrice))
-    //     return totalPrice
-    
-    // }
-
     function goCheckout(){
 
         if(basket.length)

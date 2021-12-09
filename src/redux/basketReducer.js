@@ -20,8 +20,10 @@ const basketReducer = (state = initialState, action) => {
                 const tempItem = {...action.item, quantity: 1, total: Number(action.item.price)}
 
                 return {
+
                     ...state,
                     basket: [...state.basket, tempItem]
+                    
                  }
    
           
@@ -99,20 +101,23 @@ const basketReducer = (state = initialState, action) => {
             }
             
         case EMPTY_BASKET:
+
             return {
 
                 ...state,
                 basket: []
 
             }
+
         case SET_GEOLOCATION:
 
             const location = action.geoLocation.split(", ")
+            const address = action.address
             // console.log("location in reducer ", location)
             return {
 
                 ...state,
-                userGeoLocation: location
+                userGeoLocation: { location, address }
 
             }
             

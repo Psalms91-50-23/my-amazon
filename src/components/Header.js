@@ -10,7 +10,9 @@ const Header = () => {
 
     const { basket, user, userGeoLocation } = useSelector(state => state.cart)
     const [ basketLength, setBasketLenth ] = useState(basket.length)
-    const [ geoLocation, setGeolocation ] = useState("")
+    const [ geoLocation, setGeolocation ] = useState({
+        location: "",
+    })
   
     useEffect(() => 
 
@@ -23,7 +25,7 @@ const Header = () => {
     
         if(userGeoLocation)
         {
-            setGeolocation(userGeoLocation)
+            setGeolocation({...userGeoLocation, location: userGeoLocation.location})
             // console.log("geo location ", geoLocation);   
         }
   
@@ -39,7 +41,8 @@ const Header = () => {
         }
 
     }
-
+    // console.log("geolocation ", geoLocation)
+    const { location } = geoLocation
     return (
 
         <div className="header">
@@ -60,10 +63,10 @@ const Header = () => {
                         Deliver to
                     </span>
                     <span className="header__geoLocation__city">
-                        {geoLocation[0]}
+                        {location[0]}
                     </span>
                     <span className="header__geoLocation__country">
-                        {geoLocation[1]}
+                        {location[1]}
                     </span>           
                 </div>
                 
