@@ -54,7 +54,7 @@ const Header = () => {
                     alt=""
                 />
             </NavLink>
-            { geoLocation ? 
+            { location?
                ( 
                    
                 <div className="header__geoLocation">
