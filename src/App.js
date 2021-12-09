@@ -27,7 +27,17 @@ function App() {
 
     useEffect(() => {
    
-        getGeoCoordinates()   
+        getGeoLocation()
+
+    },[])
+
+    useEffect(() => {
+   
+        if(userCoorindates.latitude)
+        {
+            getGeoCoordinates()  
+        }
+         
 
     },[userCoorindates.latitude])
 
@@ -56,7 +66,7 @@ function App() {
 
         switch(error.code) {
         case error.PERMISSION_DENIED:
-            alert("User denied the request for Geolocation. You can turn it off to activate re-prompting of location")
+            alert("User denied the request for Geolocation. You can turn it off to activate re-prompting of location after you refresh")
             break;
         case error.POSITION_UNAVAILABLE:
             alert( "Location information is unavailable.")
@@ -102,7 +112,7 @@ function App() {
 
     function getGeoCoordinates(){
         
-        getGeoLocation()
+        // getGeoLocation()
         Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
         if(userCoorindates.latitude)
         {

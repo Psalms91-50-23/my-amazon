@@ -44,7 +44,7 @@ app.post("/payment/create", async (req,res) => {
         currency: "nzd",
     })
 
-    console.log("paymentIntent  ",paymentIntent)
+    // console.log("paymentIntent  ",paymentIntent)
     // OK - created
     res.status(201).send({
         clientSecret: paymentIntent.client_secret,
@@ -56,5 +56,6 @@ app.post("/payment/create", async (req,res) => {
 
 //Listen command
 //got its api name as exports.api
+// "http://127.0.0.1:5001/khos-17ce8/us-central1/api" gets its api at the end
 exports.api = functions.https.onRequest(app)
 
