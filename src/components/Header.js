@@ -23,7 +23,7 @@ const Header = () => {
 
     useEffect(() => {
     
-        if(userGeoLocation)
+        if(userGeoLocation?.location.length)
         {
             setGeolocation({...userGeoLocation, location: userGeoLocation.location})
             // console.log("geo location ", geoLocation);   
@@ -46,34 +46,36 @@ const Header = () => {
     return (
 
         <div className="header">
-            <NavLink to="/">
-                <img 
-                    className="header__logo"
-                    // src="http://pngimg.com/uploads/amazon/amazon_PNT11.png"
-                    src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-                    alt=""
-                />
-            </NavLink>
-            { location?
-               ( 
-                   
-                <div className="header__geoLocation">
-                    {/* <p>{geoLocation}</p> */}
-                    <span className="header__geoLocation__deliver">
-                        Deliver to
-                    </span>
-                    <span className="header__geoLocation__city">
-                        {location[0]}
-                    </span>
-                    <span className="header__geoLocation__country">
-                        {location[1]}
-                    </span>           
-                </div>
-                
-                )
-                :
-                ""
-            }
+            <div className='header__img__geolocation__container'>
+                <NavLink to="/">
+                    <img 
+                        className="header__logo"
+                        // src="http://pngimg.com/uploads/amazon/amazon_PNT11.png"
+                        src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+                        alt=""
+                    />
+                </NavLink>
+                { location?
+                ( 
+                    
+                    <div className="header__geoLocation">
+                        {/* <p>{geoLocation}</p> */}
+                        <span className="header__geoLocation__deliver">
+                            Deliver to
+                        </span>
+                        <span className="header__geoLocation__city">
+                            {location[0]}
+                        </span>
+                        <span className="header__geoLocation__country">
+                            {location[1]}
+                        </span>           
+                    </div>
+                    
+                    )
+                    :
+                    ""
+                }
+            </div>
              <div className="header__search">
                  <input 
                     className="header__searchInput"  

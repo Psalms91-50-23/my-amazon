@@ -95,7 +95,7 @@ const Payment = () => {
             //paymentIntent (is what Stripe calls it) = payment confirmation
             const { paymentIntent } = response
             // console.log("response ", response);
-
+            console.log("paymentIntent  payment.js ",paymentIntent)
             db
             .collection("users")//nosql data structure, users table
             .doc(user?.uid)

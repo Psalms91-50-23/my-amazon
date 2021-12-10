@@ -1,8 +1,5 @@
 .header {
 
-    height: 60px;
-    margin: 0;
-    padding: 0;
     width: 100vw;
     height: auto;
     display: flex;
@@ -15,21 +12,20 @@
 
 }
 
-/* .header > a:first-child {
-
-    padding: 0;
-    margin: 0;
-    width: 110px;
-
-} */
-
 .header__logo {
 
     width: 80px;
     /* contain keeps aspect ratio */
     object-fit: contain;
-    margin: 0 10px;
+    /* margin: 0 10px; */
     margin-top: 18px;
+
+}
+
+.header__img__geolocation__container {
+
+    display: flex;
+    /* margin: 5px; */
 
 }
 
@@ -93,7 +89,7 @@
     align-items: center;
     color: white;
     padding: 5px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 
 }
 
@@ -178,9 +174,9 @@
 
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 795px) {
     
-    .header__logo{
+    .header__logo {
 
         width: 80px;
 
@@ -190,10 +186,15 @@
 
         display: flex;
         flex-direction: column;
-        width: 100vw;
         height: auto;
 
     }
+/* 
+    .header__optionBasket {
+
+        margin: 5 0px;
+
+    } */
 
     .header__search {
 
@@ -201,10 +202,16 @@
  
     }
 
+    .header__img__geolocation__container {
+
+        display: flex;
+
+    }
+
     .header__nav {
 
         margin: 5px;
-        /* margin-bottom: 5px; */
+
     }
 }
 
@@ -214,10 +221,14 @@
 
         display: flex;
         flex-direction: column;
-        width: 100%;
         height: auto;
-        margin: 5px;
         padding: 5px;
+
+    }
+
+    .header__img__geolocation__container {
+
+        display: flex;
 
     }
 
@@ -247,7 +258,7 @@
     }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 372px) {
     
     .header__logo {
 
@@ -259,8 +270,13 @@
 
         display: flex;
         flex-direction: column;
-        width: 100vw;
         height: auto;
+
+    }
+
+    .header__img__geolocation__container {
+
+        display: flex;
 
     }
 
@@ -291,7 +307,12 @@
         height: auto;
         display: flex;
         flex-direction: column;
-        width: 100vw;
+
+    }
+
+    .header__img__geolocation__container {
+
+        display: flex;
 
     }
 
